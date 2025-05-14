@@ -15,27 +15,18 @@
         }
         .slide {
             min-height: 100vh;
-            /* scroll-snap-align: start; */ /* Comentado para flujo de una sola página */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 3rem 1.5rem; 
-            /* opacity: 0; */ /* Comentado para flujo de una sola página */
-            /* transition: opacity 0.8s ease-in-out, transform 0.5s ease-out; */ /* Comentado */
-            /* position: absolute; */ /* Comentado para flujo de una sola página */
             width: 100%;
-            /* top: 0; */ /* Comentado */
-            /* left: 0; */ /* Comentado */
-            border-bottom: 2px dashed #D4AF37; /* Separador entre secciones */
+            border-bottom: 2px dashed #D4AF37; 
         }
         .slide:last-of-type {
             border-bottom: none;
+            min-height: auto; 
         }
-        /* .slide.active { */ /* Comentado para flujo de una sola página */
-            /* opacity: 1; */
-            /* position: relative;  */
-        /* } */
         .slide-content {
             max-width: 950px; 
             text-align: center;
@@ -67,6 +58,13 @@
          .slide.bg-mayan-green .highlight-strong, .slide.bg-mayan-green .highlight {
             color: #FCD34D !important; 
         }
+        .slide.bg-mayan-green a { /* Estilo para links en fondo oscuro */
+            color: #FCD34D; /* Dorado más brillante para links */
+        }
+        .slide.bg-mayan-green a:hover {
+            color: #FFF;
+        }
+
 
         .text-mayan-gold { color: #D4AF37; } 
         .text-mayan-dark-green { color: #152821; } 
@@ -310,12 +308,12 @@
             <a href="https://youtu.be/Vsbfr5_3_Pk?si=5XCLL8WVVhVPhLUd" target="_blank" class="external-link">MayanCity Teaser</a>
             <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">La Oportunidad de SU VIDA: Inversión Estratégica y BLINDADA en Chuun</h2>
             <p class="section-subtitle text-mayan-dark-green text-xl">El Momento es <span class="font-bold">AHORA</span>. El Futuro es <span class="font-bold">MAYANCITY</span>. Su Legado Comienza con <span class="font-bold text-mayan-gold">CHUUN</span>.</p>
-            <p class="mb-4 text-lg">La visión es <span class="font-bold">MayanCity</span>: una comunidad revolucionaria, un ecosistema de prosperidad. La oportunidad <span class="highlight-strong">ÚNICA E IRREPETIBLE</span> es <span class="font-bold text-mayan-gold text-2xl">Chuun</span>: <span class="highlight">17.65 hectáreas selectas</span>, tomadas de la primera fase del proyecto original cuyos trabajos iniciales fueron supervisados por <a href="https://artigas.com.mx/" target="_blank" class="font-bold hover:underline">Artigas Arquitectos</a> y con <span class="highlight">absoluta certeza jurídica</span>, ofrecidas a un precio de entrada para <span class="font-bold">auténticos pioneros</span> que buscan capitalizar el nacimiento de MayanCity, la obra maestra de <a href="https://www.springall-mk.com/home" target="_blank" class="font-bold hover:underline">Billy Springall</a>.</p>
+            <p class="mb-4 text-lg">La visión es <span class="font-bold">MayanCity</span>: una comunidad revolucionaria, un ecosistema de prosperidad. La oportunidad <span class="highlight-strong">ÚNICA E IRREPETIBLE</span> es <span class="font-bold text-mayan-gold text-2xl">Chuun</span>: <span class="highlight">17.65 hectáreas selectas</span>, tomadas de la primera fase del proyecto original cuyos trabajos iniciales fueron supervisados por <a href="https://artigas.com.mx/" target="_blank" class="font-bold hover:underline text-mayan-dark-green">Artigas Arquitectos</a> y con <span class="highlight">absoluta certeza jurídica</span>, ofrecidas a un precio de entrada para <span class="font-bold">auténticos pioneros</span> que buscan capitalizar el nacimiento de MayanCity, la obra maestra de <a href="https://www.springall-mk.com/home" target="_blank" class="font-bold hover:underline text-mayan-dark-green">Billy Springall</a>.</p>
             <p class="mb-6 text-lg"><span class="font-bold">Próximamente</span>, MayanCity desplegará su magnificencia, y el valor de estos terrenos fundacionales <span class="highlight">explotará exponencialmente</span>. Esta es su entrada privilegiada, con <span class="font-bold">títulos de propiedad individuales y un entramado legal a prueba de todo</span>.</p>
             <ul class="custom-list general-benefit-list text-left mx-auto max-w-xl">
                 <li><span class="font-bold">Inversión Semilla de Alto Calibre:</span> Terrenos en Chuun a precios de <span class="highlight">$800 - $1,200 MXN/m²</span>. ¡Una ventana de oportunidad que se cerrará pronto!</li>
                 <li><span class="font-bold">Multiplicador de Valor Exponencial:</span> El inicio del desarrollo de MayanCity (próximamente) catapultará su inversión.</li>
-                <li><span class="font-bold">Confianza y Prestigio Absolutos:</span> Trabajos iniciales por <a href="https://artigas.com.mx/" target="_blank" class="font-bold hover:underline">Artigas Arquitectos</a>, visión de <a href="https://www.springall-mk.com/home" target="_blank" class="font-bold hover:underline">Billy Springall</a>, y <span class="highlight-strong">100% SEGURIDAD LEGAL</span> (Títulos de Propiedad, Fideicomiso Bx+, PFG Abogados).</li>
+                <li><span class="font-bold">Confianza y Prestigio Absolutos:</span> Trabajos iniciales por <a href="https://artigas.com.mx/" target="_blank" class="font-bold hover:underline text-mayan-dark-green">Artigas Arquitectos</a>, visión de <a href="https://www.springall-mk.com/home" target="_blank" class="font-bold hover:underline text-mayan-dark-green">Billy Springall</a>, y <span class="highlight-strong">100% SEGURIDAD LEGAL</span> (Títulos de Propiedad, Fideicomiso Bx+, PFG Abogados).</li>
             </ul>
         </div>
     </section>
@@ -342,7 +340,7 @@
              <a href="https://drive.google.com/file/d/1LL4V_yvspgCS_ysbtSQ9YP3KDYOSngTb/view?usp=sharing" target="_blank" class="external-link">Lotificacion Chuun</a>
             <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">Chuun Hoy: La Base TANGIBLE de Su Inversión, con el Prestigio de Artigas</h2>
             <p class="section-subtitle text-mayan-dark-green text-xl">Invierta sobre Realidades, no Promesas. Certeza y Calidad desde el Origen.</p>
-            <p class="mb-4 text-lg">Su inversión no es un salto al vacío. <span class="font-bold text-mayan-gold text-2xl">Chuun</span> le ofrece <span class="highlight">17.65 hectáreas selectas</span>, tomadas de la primera fase del proyecto original cuyos trabajos de campo (deslinde y trazo de vialidades) fueron supervisados por <a href="https://artigas.com.mx/" target="_blank" class="font-bold hover:underline">Artigas Arquitectos</a>, un diferenciador <span class="font-bold">INVALUABLE</span>:</p>
+            <p class="mb-4 text-lg">Su inversión no es un salto al vacío. <span class="font-bold text-mayan-gold text-2xl">Chuun</span> le ofrece <span class="highlight">17.65 hectáreas selectas</span>, tomadas de la primera fase del proyecto original cuyos trabajos de campo (deslinde y trazo de vialidades) fueron supervisados por <a href="https://artigas.com.mx/" target="_blank" class="font-bold hover:underline text-mayan-dark-green">Artigas Arquitectos</a>, un diferenciador <span class="font-bold">INVALUABLE</span>:</p>
             <ul class="custom-list general-benefit-list text-left mx-auto max-w-xl mb-4">
                 <li><span class="font-bold">Deslinde total</span> de la superficie del proyecto original completado.</li>
                 <li><span class="font-bold">Trazo físico de vialidades internas ecológicas</span> (sascab compactado de alta calidad) en la primera fase del proyecto original, de la cual se seleccionan las <span class="highlight">17.65 hectáreas de Chuun</span>. Esto incluye <span class="highlight">avenidas principales, doble acceso y calles secundarias ya definidas en sitio</span>.</li>
@@ -398,7 +396,7 @@
                 <li><span class="font-bold">Experiencias Inolvidables y Enriquecedoras:</span> La Fase 1 de MayanCity (155 ha) deslumbrará con un <span class="highlight">Cenote Urbano majestuoso</span> (laguna de 7ha, playas paradisíacas, zonas deportivas de élite), un <span class="font-bold">Wellness Centre & Hotel de calibre mundial</span>, y una profunda reverencia e integración de la rica herencia cultural maya.</li>
             </ul>
             <p class="mt-5 text-lg">Con la <span class="font-bold">genialidad conceptual de <a href="https://www.springall-mk.com/home" target="_blank" class="text-mayan-dark-green hover:text-mayan-gold hover:underline">Springall</a></span>, la <span class="font-bold">solidez estructural de los trabajos iniciales de <a href="https://artigas.com.mx/" target="_blank" class="text-mayan-dark-green hover:text-mayan-gold hover:underline">Artigas Arquitectos</a></span> en el proyecto original (del cual Chuun es la joya fundacional), y el <span class="font-bold">impulso de socios tecnológicos líderes</span> (Eco World Building, Solben, Binkio), esta es la <span class="highlight-strong">magnitud colosal del proyecto</span> que <span class="highlight">catapultará el valor de su inversión pionera en Chuun</span> a la estratósfera financiera.</p>
-            <a href="#" class="btn-mayan mt-8">Proyecto MayanCity By Billy Springall</a> 
+            <a href="https://drive.google.com/file/d/1POCE_bHk_Yy3bsA1iW2kvfiYjyaaSY5O/view?usp=drive_link" target="_blank" class="btn-mayan mt-8">Proyecto MayanCity By Billy Springall</a> 
         </div>
     </section>
 
@@ -477,18 +475,16 @@
 
     <script>
         // Script para la numeración de slides en la vista web 
+        // (No se usa activamente para la navegación en formato de página única, pero puede ser útil si se reactiva)
         const slides = document.querySelectorAll('.slide');
-        const slideNumbers = document.querySelectorAll('.slide-number'); 
-        const totalSlides = slides.length;
+        // const slideNumbers = document.querySelectorAll('.slide-number');  // Eliminado ya que no hay slide-number divs
+        // const totalSlides = slides.length; // Eliminado
 
-        function updateSlideNumbers() {
-            slides.forEach((slide, index) => {
-                const slideNumberDiv = slide.querySelector('.slide-number');
-                if (slideNumberDiv) { 
-                    slideNumberDiv.textContent = `Página ${index + 1} de ${totalSlides}`;
-                }
-            });
-        }
+        // function updateSlideNumbers() { // Eliminado
+        //     slideNumbers.forEach((sn, index) => {
+        //         sn.textContent = `Página ${index + 1} de ${totalSlides}`;
+        //     });
+        // }
         
         document.addEventListener('DOMContentLoaded', () => {
             slides.forEach(slide => {
@@ -496,7 +492,7 @@
                 slide.style.opacity = '1';
                 slide.style.display = 'flex'; 
             });
-            updateSlideNumbers();
+            // updateSlideNumbers(); // Eliminado
         });
 
         const contactButton = document.querySelector('a[href="#slide11"]'); 
