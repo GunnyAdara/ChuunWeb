@@ -10,33 +10,27 @@
     <style>
         body {
             font-family: 'Inter', sans-serif; 
-            scroll-behavior: smooth;
             line-height: 1.7; 
+            background-color: #F9F7F1; /* Beige Tierra Fértil para el fondo general */
         }
-        .slide {
-            min-height: 100vh;
-            scroll-snap-align: start;
+        .slide { /* Ahora cada 'slide' es una sección de la página única */
+            min-height: 90vh; /* Altura mínima para que cada sección se sienta sustancial en web */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 3rem 1.5rem; 
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out, transform 0.5s ease-out; 
-            position: absolute;
-            width: 100%;
-            top: 0;
-            left: 0;
+            padding: 4rem 2rem; /* Espaciado generoso */
+            border-bottom: 2px dashed #D4AF37; /* Separador dorado entre secciones */
         }
-        .slide.active {
-            opacity: 1;
-            position: relative; 
+        .slide:last-of-type {
+            border-bottom: none; /* Sin borde en la última sección */
+            min-height: auto; /* Altura automática para la última sección de contacto */
         }
         .slide-content {
             max-width: 950px; 
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.03); 
-            padding: 2rem; 
+            background-color: transparent; /* Sin fondo diferenciado para el contenido del slide en web */
+            padding: 1rem; 
             border-radius: 1rem; 
             position: relative; 
         }
@@ -50,9 +44,25 @@
             line-height: 1.2; 
         }
         .bg-mayan-light { background-color: #F9F7F1; } 
-        .bg-mayan-green { background-color: #1A302A; } 
+        .bg-mayan-green { background-color: #1A302A; } /* Se usará para la primera sección */
+        
+        .slide.bg-mayan-green h1.main-title,
+        .slide.bg-mayan-green .section-subtitle,
+        .slide.bg-mayan-green p,
+        .slide.bg-mayan-green .slide-number {
+            color: #F9F7F1; /* Texto claro para la primera sección oscura */
+        }
+        .slide.bg-mayan-green .text-mayan-gold {
+            color: #D4AF37 !important;
+        }
+         .slide.bg-mayan-green .highlight-strong, .slide.bg-mayan-green .highlight {
+            color: #FCD34D !important; /* Dorado más brillante para contraste en fondo oscuro */
+        }
+
+
         .text-mayan-gold { color: #D4AF37; } 
         .text-mayan-dark-green { color: #152821; } 
+
         .btn-mayan {
             background-image: linear-gradient(to right, #D4AF37, #C99A2E); 
             color: #1A302A; 
@@ -63,52 +73,21 @@
             text-transform: uppercase; 
             letter-spacing: 0.08em; 
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); 
+            display: inline-block; /* Para que los botones se comporten bien */
+            margin-top: 1rem;
         }
         .btn-mayan:hover {
             background-image: linear-gradient(to right, #C99A2E, #B08525);
             transform: translateY(-3px) scale(1.05); 
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
         }
-        .nav-button {
-            position: fixed;
-            bottom: 1.5rem; 
-            padding: 0.7rem; 
-            background-color: rgba(212, 175, 55, 0.85); 
-            color: #1A302A; 
-            border-radius: 9999px; 
-            cursor: pointer;
-            z-index: 50;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        .nav-button:hover {
-            background-color: #D4AF37; 
-            transform: scale(1.1);
-        }
-        .nav-prev { left: 1.5rem; }
-        .nav-next { right: 1.5rem; }
-        .img-placeholder { 
-            border: 4px solid #D4AF37; 
-            background-color: #F0EAD6; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #B08525; 
-            font-style: italic;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem; 
-            padding: 1.5rem;
-            margin-bottom: 2rem; 
-            border-radius: 0.75rem; 
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15); 
-        }
+        
         .slide-image { 
             max-width: 100%; 
             height: auto;   
-            max-height: 380px; 
+            max-height: 400px; /* Altura máxima ajustada */
             object-fit: contain; 
-            margin: 0 auto 1rem auto; 
+            margin: 0 auto 1.5rem auto; /* Margen inferior aumentado un poco */
             border-radius: 0.75rem; 
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
@@ -127,9 +106,9 @@
         }
         .external-link { 
             display: inline-block;
-            margin-top: 0.5rem; 
-            margin-bottom: 1rem; 
-            padding: 0.75rem 1.5rem; 
+            margin-top: 1rem; /* Aumentado para más espacio */
+            margin-bottom: 1.5rem; 
+            padding: 0.85rem 1.8rem; 
             background-color: #1A302A; 
             color: #D4AF37; 
             font-weight: bold;
@@ -155,17 +134,11 @@
         .section-subtitle { 
             font-family: 'Inter', sans-serif;
             font-size: 1.35rem; 
-            color: #e2e8f0; 
+            color: #374151; /* Color por defecto para subtítulos */
             margin-bottom: 1.5rem; /* mb-6 */
             font-weight: 400; 
         }
-        .slide.bg-mayan-green .section-subtitle {
-             color: #d1d5db; /* gray-300 */
-        }
-        .slide:not(.bg-mayan-green) .section-subtitle {
-            color: #374151; /* gray-700 */
-        }
-
+        
         .custom-list {
             list-style: none;
             padding-left: 0;
@@ -201,27 +174,17 @@
             right: 1.5rem; 
             font-size: 0.875rem; 
             font-weight: bold;
+            color: rgba(26, 48, 42, 0.5); /* Color por defecto para números */
         }
-        .slide.bg-mayan-green .slide-number {
-            color: rgba(249, 247, 241, 0.7); 
+        .slide.bg-mayan-green .slide-number { /* Específico para el primer slide */
+            color: rgba(249, 247, 241, 0.5); 
         }
-        .slide:not(.bg-mayan-green) .slide-number {
-            color: rgba(26, 48, 42, 0.7); 
-        }
-
-
-        .slide.bg-mayan-green .custom-list li { color: #f3f4f6; } 
-        .slide.bg-mayan-green .custom-list li::before { color: #FCD34D; } 
-
 
         @media (max-width: 768px) {
-            .slide { padding: 2rem 1rem; }
+            .slide { padding: 2rem 1rem; min-height: auto; } /* Altura auto para móviles */
             .slide-content { padding: 1.5rem; }
             h1.main-title { font-size: 2rem; line-height: 1.25; } 
-            h2 { font-size: 2rem; } 
-            .nav-button { padding: 0.6rem; bottom: 1rem;}
-            .nav-prev { left: 1rem; }
-            .nav-next { right: 1rem; }
+            h2 { font-size: 1.75rem; } 
             .custom-list li { font-size: 1rem; padding-left: 2rem;}
             .custom-list li::before { font-size: 1.3rem;}
             .logo-slide-display { max-width: 90%; margin-bottom:1rem;} 
@@ -239,12 +202,103 @@
             h1.main-title { font-size: 3.25rem; line-height: 1.2;} 
         }
 
+        /* ESTILOS PARA IMPRESIÓN / PDF */
+        @media print {
+            body {
+                font-size: 10pt; /* Tamaño base para PDF, ligeramente más pequeño */
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+            }
+            .slide {
+                display: block !important; 
+                position: relative !important; 
+                opacity: 1 !important;
+                min-height: 0 !important; 
+                height: auto !important; /* Altura determinada por contenido */
+                width: 100% !important; 
+                page-break-after: always; 
+                padding: 1.5cm 1cm; /* Márgenes más ajustados para PDF */
+                box-shadow: none !important;
+                border: none !important;
+                border-bottom: 1px solid #eee !important; /* Línea sutil para separar páginas en PDF */
+            }
+            .slide:last-child {
+                page-break-after: auto; 
+                border-bottom: none !important;
+            }
+            .slide-content {
+                max-width: 100% !important;
+                padding: 0 !important;
+                background-color: transparent !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+            }
+            .nav-button { display: none !important; }
+            .slide-image, .logo-slide-display, .logo-contact-display {
+                max-width: 80% !important; /* Reducir un poco más para PDF */
+                height: auto !important;
+                margin: 1rem auto !important; /* Margen consistente */
+                display: block;
+                box-shadow: none !important;
+                border: 1px solid #dddddd !important; 
+            }
+             .logo-slide-display {
+                max-width: 70% !important; 
+             }
+            .external-link, .btn-mayan {
+                border: 1px solid #333333 !important;
+                padding: 0.3em 0.7em !important;
+                background-image: none !important;
+                background-color: #f0f0f0 !important;
+                color: #000000 !important;
+                text-decoration: none !important; 
+                display: inline-block; 
+                margin: 0.5rem 0.25rem; /* Ajuste de margen para botones en línea */
+                font-size: 9pt !important;
+            }
+            a { 
+                color: #0000AA !important; /* Azul más oscuro para links en PDF */
+                text-decoration: underline !important;
+            }
+             .text-mayan-gold, .highlight, .highlight-strong { color: #B8860B !important; } /* Dorado oscuro para mejor contraste en B/N */
+            .text-mayan-dark-green, h1, h2, h3, p, li { color: #000000 !important; }
+            
+            .bg-mayan-green { background-color: #ffffff !important; } /* Fondo blanco para el primer slide en PDF */
+            .bg-mayan-green .section-subtitle, 
+            .bg-mayan-green .custom-list li,
+            .bg-mayan-green .text-md,
+            .bg-mayan-green p { /* Asegurar que el texto sea negro en el primer slide para PDF */
+                color: #000000 !important;
+            }
+             .bg-mayan-green .text-mayan-gold,
+             .bg-mayan-green .highlight-strong, 
+             .bg-mayan-green .highlight {
+                 color: #B8860B !important;
+             }
+
+            .slide-number {
+                color: #666666 !important;
+                font-size: 8pt !important;
+                bottom: 0.3cm !important;
+                right: 0.3cm !important;
+            }
+            h1.main-title { font-size: 20pt !important; margin-bottom: 0.5rem !important; }
+            h2 { font-size: 16pt !important; border-bottom: 1px solid #666666 !important; margin-bottom: 0.8rem !important; padding-bottom: 0.2rem !important;}
+            h3 { font-size: 13pt !important; color: #222222 !important; margin-bottom: 0.4rem !important; margin-top: 1rem !important;}
+            p, li { font-size: 10pt !important; line-height: 1.5 !important; text-align: justify !important; } /* Justificar texto para PDF */
+            .custom-list li::before { color: #333333 !important; }
+            .section-subtitle { font-size: 12pt !important; color: #333333 !important; margin-bottom: 1rem !important; }
+            .slide-content > p.text-lg, .slide-content > p.text-xl, .slide-content > p.text-2xl { font-size: 10pt !important; } /* Ajustar tamaños de párrafo específicos */
+            .custom-list { max-width: 100% !important; } /* Permitir que la lista ocupe el ancho en PDF */
+        }
 
     </style>
 </head>
 <body class="bg-mayan-light text-mayan-dark-green">
 
-    <section id="slide1" class="slide active bg-mayan-green text-white">
+    <section id="slide1" class="slide bg-mayan-green text-white">
         <div class="slide-content">
             <img src="https://imagizer.imageshack.com/v2/800x600q70/922/yBm0Bi.png" alt="Logotipo Oficial de CHUUN" class="logo-slide-display">
             <h1 class="main-title font-black mb-3 text-mayan-gold">CHUUN: El Origen<br>SAGRADO de MayanCity</h1>
@@ -252,7 +306,7 @@
             <p class="mb-3 text-lg md:text-xl">Descubra <span class="font-bold text-mayan-gold text-2xl md:text-3xl">Chuun</span> (Origen en Maya): las <span class="highlight-strong">primeras y exclusivas 17.65 hectáreas</span>, seleccionadas del terreno original cuyos trabajos iniciales (deslinde y trazo) fueron supervisados por el prestigioso despacho <span class="font-bold">Artigas Arquitectos</span>. Chuun es el cimiento tangible de la <span class="font-bold">visionaria MayanCity</span>, conceptualizada por <span class="font-bold">Billy Springall</span>.</p>
             <p class="mb-6 text-lg md:text-xl">Hoy, usted no solo invierte en tierra; <span class="highlight">asegura un legado</span> en el origen certificado y <span class="font-bold underline">legalmente INEXPUGNABLE</span> de una futura metrópolis.</p>
             <p class="text-md italic opacity-80">12 de Mayo de 2025</p>
-            <div class="slide-number"></div> </div>
+            <div class="slide-number">1 / 11</div> </div>
     </section>
 
     <section id="slide2" class="slide">
@@ -268,7 +322,7 @@
                 <li><span class="font-bold">Multiplicador de Valor Exponencial:</span> El inicio del desarrollo de MayanCity (próximamente) catapultará su inversión.</li>
                 <li><span class="font-bold">Confianza y Prestigio Absolutos:</span> Trabajos iniciales por <span class="font-bold">Artigas Arquitectos</span>, visión de <span class="font-bold">Billy Springall</span>, y <span class="highlight-strong">100% SEGURIDAD LEGAL</span> (Títulos de Propiedad, Fideicomiso Bx+, PFG Abogados).</li>
             </ul>
-            <div class="slide-number"></div>
+            <div class="slide-number">2 / 11</div>
         </div>
     </section>
 
@@ -285,7 +339,7 @@
                 <li>Conexión directa a infraestructura de primer orden y los destinos más codiciados del planeta.</li>
                 <li>Un entorno que <span class="highlight">garantiza un atractivo irresistible y una demanda creciente</span> para la futura MayanCity.</li>
             </ul>
-            <div class="slide-number"></div>
+            <div class="slide-number">3 / 11</div>
         </div>
     </section>
 
@@ -301,7 +355,7 @@
                 <li><span class="font-bold">Trazo físico de vialidades internas ecológicas</span> (sascab compactado de alta calidad) en la primera fase del proyecto original, de la cual se seleccionan las <span class="highlight">17.65 hectáreas de Chuun</span>. Esto incluye <span class="highlight">avenidas principales, doble acceso y calles secundarias ya definidas en sitio</span>.</li>
             </ul>
             <p class="text-lg">Esto se traduce en un <span class="highlight-strong">activo tangible, preparado y con supervisión experta de élite</span>, una plataforma sólida que <span class="highlight">pulveriza riesgos</span> y está lista para ser el <span class="font-bold">génesis glorioso</span> de MayanCity. Usted adquiere tierra con <span class="font-bold">avances concretos y certificables a un precio de oportunidad irrepetible</span>.</p>
-            <div class="slide-number"></div>
+            <div class="slide-number">4 / 11</div>
         </div>
     </section>
 
@@ -318,7 +372,7 @@
                 <li><span class="font-bold">BLINDAJE LEGAL POR PFG ABOGADOS:</span> Todo el entramado legal es orquestado y salvaguardado por Pérez Ferrer González Abogados, un despacho de <span class="highlight">élite y prestigio nacional</span> que garantiza la <span class="highlight-strong">solvencia total y el 100% de seguridad jurídica</span>.</li>
             </ul>
             <p class="mt-8 text-xl md:text-2xl">En <span class="font-bold text-mayan-gold">Chuun</span>, su patrimonio no solo está protegido, está <span class="highlight">FORTALECIDO</span> por los más altos estándares legales y financieros de México.</p>
-            <div class="slide-number"></div>
+            <div class="slide-number">5 / 11</div>
         </div>
     </section>
 
@@ -335,7 +389,7 @@
                 <li>Lotes de ~600 m², dimensiones <span class="highlight">perfectas</span> para futuras residencias unifamiliares de lujo, santuarios personales integrados a la majestuosa selva de MayanCity.</li>
                 <li>Adquiera hoy a <span class="highlight-strong">precio de inversor PIONERO y VISIONARIO</span>, una ventaja exclusiva que se esfumará con el amanecer de MayanCity.</li>
             </ul>
-            <div class="slide-number"></div>
+            <div class="slide-number">6 / 11</div>
         </div>
     </section>
 
@@ -443,30 +497,40 @@
         </div>
     </section>
 
-    <button id="prevSlide" class="nav-button nav-prev" title="Anterior">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-        </svg>
-    </button>
-    <button id="nextSlide" class="nav-button nav-next" title="Siguiente">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-        </svg>
-    </button>
-
     <script>
-        // Script para la navegación de slides
+        // Script para la numeración de slides en la vista web (si se mantiene)
+        // Para la versión de una sola página, este script de navegación no es necesario
+        // y los botones de navegación han sido comentados en el HTML.
+        // La numeración de slides se puede manejar directamente en el HTML o con un script más simple.
+
         const slides = document.querySelectorAll('.slide');
         const slideNumbers = document.querySelectorAll('.slide-number'); 
-        let currentSlide = 0;
         const totalSlides = slides.length;
 
         function updateSlideNumbers() {
             slideNumbers.forEach((sn, index) => {
-                sn.textContent = `${index + 1} / ${totalSlides}`;
+                // El texto será "Página X de Y"
+                sn.textContent = `Página ${index + 1} de ${totalSlides}`;
             });
         }
         
+        // Para la versión de una sola página, simplemente actualizamos los números una vez.
+        // Si volvemos a la navegación por slides, se necesitaría la lógica de showSlide.
+        document.addEventListener('DOMContentLoaded', () => {
+            // Asegurarse que todos los slides sean visibles en el flujo normal del documento
+            slides.forEach(slide => {
+                slide.style.position = 'relative'; // O 'static'
+                slide.style.opacity = '1';
+                slide.style.display = 'flex'; // O 'block'
+            });
+            updateSlideNumbers();
+        });
+
+        // El siguiente código es para la navegación slide por slide, 
+        // que no se usa en el formato de página única para PDF.
+        // Lo dejo comentado por si se quiere reactivar para una versión web interactiva.
+        /*
+        let currentSlide = 0;
         function showSlide(index) {
             slides.forEach((slide, i) => {
                 slide.classList.remove('active');
@@ -480,43 +544,23 @@
             updateSlideNumbers(); 
         }
 
-        updateSlideNumbers();
+        updateSlideNumbers(); // Llama para establecer los números iniciales
         showSlide(currentSlide); 
 
-        document.getElementById('nextSlide').addEventListener('click', () => {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        });
+        // ... (resto de la lógica de botones next/prev y teclado) ...
+        */
 
-        document.getElementById('prevSlide').addEventListener('click', () => {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        });
-
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowRight') {
-                document.getElementById('nextSlide').click();
-            } else if (event.key === 'ArrowLeft') {
-                document.getElementById('prevSlide').click();
-            }
-        });
-
+        // Lógica para el botón de contacto (si se usa en una versión interactiva)
         const contactButton = document.querySelector('a[href="#slide11"]'); 
         if(contactButton) {
             contactButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                let targetSlideId = this.getAttribute('href').substring(1); 
-                let targetSlideIndex = -1;
-                slides.forEach((slide, index) => {
-                    if(slide.id === targetSlideId) {
-                        targetSlideIndex = index;
-                    }
-                });
-
-                if (targetSlideIndex !== -1) {
-                    currentSlide = targetSlideIndex;
-                    showSlide(currentSlide);
+                const targetSlideId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetSlideId);
+                if (targetElement) {
+                    e.preventDefault(); // Solo prevenir si es para scroll suave en la misma página
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
                 }
+                // Si es para la versión de slides, la lógica anterior de showSlide(targetSlideIndex) aplicaría.
             });
         }
     </script>
