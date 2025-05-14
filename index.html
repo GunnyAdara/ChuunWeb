@@ -8,34 +8,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+        /* Estilos Generales */
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
             line-height: 1.7;
         }
         .slide {
-            min-height: 100vh;
-            scroll-snap-align: start;
+            /* min-height: 100vh;  Eliminado para el modo "long page" web */
+            scroll-snap-align: start; /* Mantenido por si se usa en un contenedor de scroll-snap */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 3rem 1.5rem;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out, transform 0.5s ease-out;
-            position: absolute; /* Cambiado para la lógica de "una sola página" en la web */
+            opacity: 1; /* Todos los slides visibles por defecto */
+            position: relative; /* Para que fluyan en el documento */
             width: 100%;
-            top: 0;
-            left: 0;
+            /* top: 0; left: 0; Ya no son absolutos */
+            margin-bottom: 1rem; /* Espacio entre slides REDUCIDO A LA MITAD */
         }
-        .slide.active { /* Esta clase ya no es necesaria si todo es visible */
-            opacity: 1;
-            position: relative; /* Para que los slides se apilen en el flujo normal */
+        .slide:last-child {
+            margin-bottom: 0;
         }
+
         .slide-content {
             max-width: 950px;
+            width: 100%; /* Asegura que el contenido use el ancho disponible */
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.03);
+            background-color: rgba(255, 255, 255, 0.03); /* Casi transparente, revisar si es intencional */
             padding: 2rem;
             border-radius: 1rem;
             position: relative;
@@ -53,6 +54,8 @@
         .bg-mayan-green { background-color: #1A302A; }
         .text-mayan-gold { color: #D4AF37; }
         .text-mayan-dark-green { color: #152821; }
+
+        /* Botones y Enlaces */
         .btn-mayan {
             background-image: linear-gradient(to right, #D4AF37, #C99A2E);
             color: #1A302A;
@@ -63,51 +66,13 @@
             text-transform: uppercase;
             letter-spacing: 0.08em;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            display: inline-block; /* Para que el margin auto funcione si se aplica */
+            text-decoration: none; /* Asegurar que no haya subrayado de enlace */
         }
         .btn-mayan:hover {
             background-image: linear-gradient(to right, #C99A2E, #B08525);
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-        }
-        /* Se eliminan .nav-button y sus estilos ya que no se usarán en modo "long page" */
-
-        .img-placeholder {
-            border: 4px solid #D4AF37;
-            background-color: #F0EAD6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #B08525;
-            font-style: italic;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        }
-        .slide-image { /* Estilo base para todas las imágenes principales de slide */
-            max-width: 100%;
-            height: auto;
-            max-height: 380px; /* Altura de referencia web, ajustaremos en print */
-            object-fit: contain;
-            margin: 0 auto 1rem auto;
-            border-radius: 0.75rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        .logo-slide-display {
-            max-width: 520px;
-            width: 100%;
-            height: auto;
-            margin: 0 auto 1rem auto;
-            border-radius: 0.5rem;
-            object-fit: contain;
-        }
-         .logo-contact-display {
-            max-width: 200px;
-            height: auto;
-            margin: 0 auto;
         }
         .external-link {
             display: inline-block;
@@ -128,6 +93,34 @@
             border-color: #1A302A;
         }
 
+        /* Imágenes */
+        .slide-image { /* Estilo UNIFICADO para imágenes principales de slide (WEB) */
+            display: block; /* Para centrar con margin: auto */
+            max-width: 90%; /* Limita el ancho máximo, especialmente para imágenes muy anchas */
+            width: auto;    /* El ancho se ajusta para mantener la proporción */
+            height: 380px;  /* ALTURA FIJA para homologar en la web */
+            object-fit: contain; /* Asegura que toda la imagen quepa sin recortar, manteniendo proporción */
+            margin: 1rem auto 1.5rem auto; /* Centrado y espaciado */
+            border-radius: 0.75rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .logo-slide-display {
+            display: block;
+            max-width: 520px;
+            width: 90%; /* Más responsivo en contenedores pequeños */
+            height: auto;
+            margin: 0 auto 1rem auto;
+            border-radius: 0.5rem;
+            object-fit: contain;
+        }
+         .logo-contact-display {
+            display: block;
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto 1rem auto; /* Añadido margen inferior */
+        }
+
+        /* Texto y Listas */
         .highlight, .highlight-strong {
             color: #D4AF37;
             font-weight: 700;
@@ -139,15 +132,18 @@
         .section-subtitle {
             font-family: 'Inter', sans-serif;
             font-size: 1.35rem;
-            color: #e2e8f0;
-            margin-bottom: 1.5rem; /* mb-6 */
+            color: #e2e8f0; /* Color por defecto para slides oscuros */
+            margin-bottom: 1.5rem;
             font-weight: 400;
         }
         .slide.bg-mayan-green .section-subtitle {
-             color: #d1d5db; /* gray-300 */
+             color: #d1d5db; /* gray-300 para slides verdes */
         }
-        .slide:not(.bg-mayan-green) .section-subtitle {
-            color: #374151; /* gray-700 */
+        .slide:not(.bg-mayan-green):not(.bg-gray-100) .section-subtitle { /* Para slides con fondo claro por defecto (bg-mayan-light) */
+            color: #4b5563; /* gray-600, un poco más oscuro que antes */
+        }
+        .slide.bg-gray-100 .section-subtitle { /* Específico para slides con bg-gray-100 */
+             color: #374151; /* gray-700 */
         }
 
         .custom-list {
@@ -161,7 +157,7 @@
         .custom-list li {
             position: relative;
             padding-left: 2.5rem;
-            margin-bottom: 1rem; /* mb-4 */
+            margin-bottom: 1rem;
             font-size: 1.1rem;
             line-height: 1.8;
         }
@@ -173,39 +169,42 @@
             font-size: 1.5rem;
             top: 0px;
         }
-        .general-benefit-list li::before {
-            content: '✨';
-        }
-        .vision-list li::before {
-            content: '💡';
-        }
-        /* Eliminada la clase .slide-number y sus estilos asociados */
+        .general-benefit-list li::before { content: '✨'; }
+        .vision-list li::before { content: '💡'; }
 
         .slide.bg-mayan-green .custom-list li { color: #f3f4f6; }
         .slide.bg-mayan-green .custom-list li::before { color: #FCD34D; }
 
-
-        @media (max-width: 768px) {
-            .slide { padding: 2rem 1rem; min-height: 0; /* Para que no sea 100vh en mobile en modo "long page" */ }
+        /* Media Queries para Responsividad */
+        @media (max-width: 768px) { /* Mobile */
+            .slide { padding: 2rem 1rem; margin-bottom: 0.75rem; /* Reducido también para mobile */ }
             .slide-content { padding: 1.5rem; }
             h1.main-title { font-size: 2rem; line-height: 1.25; }
-            h2 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; } /* Reducido para mobile */
+            .section-subtitle { font-size: 1.1rem; }
             .custom-list li { font-size: 1rem; padding-left: 2rem;}
             .custom-list li::before { font-size: 1.3rem;}
-            .logo-slide-display { max-width: 90%; margin-bottom:1rem;}
+            .logo-slide-display { max-width: 80%; margin-bottom:1rem;}
             .logo-contact-display { max-width: 150px; }
             .btn-mayan { padding: 0.9rem 1.5rem; font-size: 0.9rem;}
-            .slide-image { max-height: 300px; margin-bottom: 0.5rem;}
-            .external-link { margin-top: 0.5rem; margin-bottom: 1rem; padding: 0.6rem 1.2rem; font-size: 0.9rem;}
+            .slide-image {
+                height: 280px; /* Altura ajustada para mobile */
+                margin-bottom: 1rem;
+            }
+            .external-link { padding: 0.6rem 1.2rem; font-size: 0.9rem;}
         }
          @media (min-width: 769px) and (max-width: 1024px) { /* Tablet */
-            .slide { min-height: 0; /* Para que no sea 100vh en tablet en modo "long page" */ }
-            h1.main-title { font-size: 2.75rem; line-height: 1.2;}
+            .slide { margin-bottom: 1rem; /* Mantenemos el margen reducido */ }
+            h1.main-title { font-size: 2.5rem; line-height: 1.2;} /* Ajustado para tablet */
+            h2 { font-size: 2.25rem; }
             .logo-slide-display { max-width: 450px; }
+            .slide-image { height: 350px; } /* Altura ajustada para tablet */
         }
         @media (min-width: 1025px) { /* Desktop */
-            .slide { min-height: 0; /* Para que no sea 100vh en desktop en modo "long page" */ }
-            h1.main-title { font-size: 3.25rem; line-height: 1.2;}
+            /* El margin-bottom: 1rem; ya está aplicado en la regla general de .slide */
+            h1.main-title { font-size: 3rem; line-height: 1.2;} /* Ligeramente ajustado */
+            h2 { font-size: 2.75rem; }
+            /* La altura de .slide-image para desktop ya está en 380px (estilo base) */
         }
 
         /* ESTILOS PARA IMPRESIÓN / PDF */
@@ -219,19 +218,20 @@
             }
             .slide {
                 display: block !important;
-                position: relative !important; /* Asegura que no se superpongan */
+                position: relative !important;
                 opacity: 1 !important;
-                min-height: 0 !important; /* Reset min-height */
-                height: auto !important;   /* Altura definida por el contenido */
+                min-height: 0 !important;
+                height: auto !important;
                 width: 100% !important;
-                page-break-after: always; /* Cada slide en una nueva página */
-                padding: 1.5cm 1cm; /* Márgenes de la página PDF */
+                page-break-after: always;
+                padding: 0.75cm 1.2cm; /* MÁRGENES SUPERIOR/INFERIOR REDUCIDOS A LA MITAD */
                 box-shadow: none !important;
                 border: none !important;
-                border-bottom: 1px solid #eee !important; /* Separador visual sutil */
+                border-bottom: 1px solid #eaeaea !important; /* Borde más sutil */
+                margin-bottom: 0 !important; /* Sin margen inferior en impresión */
             }
             .slide:last-child {
-                page-break-after: auto; /* Evita salto después del último */
+                page-break-after: auto;
                 border-bottom: none !important;
             }
             .slide-content {
@@ -241,56 +241,71 @@
                 border-radius: 0 !important;
                 box-shadow: none !important;
             }
-            /* .nav-button ya no existe */
-            .slide-image {
-                max-width: 80% !important; /* O un valor más específico como 15cm o 16cm */
-                height: auto !important;
-                max-height: 8cm !important; /* ALTURA UNIFICADA SUGERIDA PARA IMÁGENES EN PDF */
-                object-fit: contain !important;
-                margin: 1rem auto !important;
-                display: block;
+
+            .slide-image { /* Estilo UNIFICADO para imágenes principales de slide (PDF) */
+                display: block !important;
+                width: auto !important; /* Ancho se ajusta a la altura y max-width */
+                max-width: 100% !important; /* Que no exceda el contenedor, pero la altura es la clave */
+                height: 8cm !important;  /* ALTURA FIJA para homologar en PDF */
+                object-fit: contain !important; /* Mantiene proporción, asegura que quepa */
+                margin: 0.8cm auto 1cm auto !important; /* Centrado y espaciado (cm) */
+                border: 1px solid #cccccc !important; /* Borde más sutil */
+                border-radius: 0.2cm !important;
                 box-shadow: none !important;
-                border: 1px solid #dddddd !important;
             }
-             .logo-slide-display {
-                max-width: 60% !important; /* Ajustado para mejor proporción en PDF */
-                height: auto !important;
-                margin: 1rem auto !important;
-                display: block;
-                box-shadow: none !important;
+            .logo-slide-display {
+                display: block !important;
+                max-width: 12cm !important; /* Tamaño fijo para consistencia */
+                width: auto !important;
+                height: auto !important; /* La altura se ajusta */
+                object-fit: contain !important;
+                margin: 0.5cm auto 0.8cm auto !important;
                 border: 1px solid #dddddd !important;
+                border-radius: 0.1cm !important;
+                box-shadow: none !important;
              }
             .logo-contact-display {
-                max-width: 30% !important; /* Ajustado para el logo más pequeño en PDF */
-                /* o max-width: 5cm !important; */
+                display: block !important;
+                max-width: 6cm !important; /* Tamaño fijo para consistencia */
+                width: auto !important;
                 height: auto !important;
-                margin: 0.5rem auto !important;
-                display: block;
-                box-shadow: none !important;
+                object-fit: contain !important;
+                margin: 0.5cm auto 0.8cm auto !important;
                 border: 1px solid #dddddd !important;
+                border-radius: 0.1cm !important;
+                box-shadow: none !important;
             }
-            .external-link, .btn-mayan {
+            .external-link, .btn-mayan { /* Estilo unificado para impresión */
                 border: 1px solid #333333 !important;
-                padding: 0.3em 0.7em !important;
+                padding: 0.25cm 0.5cm !important; /* Usando cm para consistencia */
                 background-image: none !important;
                 background-color: #f0f0f0 !important;
                 color: #000000 !important;
                 text-decoration: none !important;
-                display: inline-block;
-                margin: 0.5rem 0.25rem;
+                display: inline-block !important; /* Asegurar que se muestre */
+                margin: 0.3cm auto !important; /* Margen auto para centrar si es el único elemento en una línea */
                 font-size: 9pt !important;
+                border-radius: 0.1cm !important;
             }
+            /* Para centrar el botón específicamente si está solo en un div o párrafo */
+            .print-center-button-container {
+                text-align: center !important;
+                margin-top: 0.5cm !important;
+                margin-bottom: 0.5cm !important;
+            }
+
+
             a {
-                color: #0000AA !important;
+                color: #000077 !important; /* Azul un poco más oscuro para enlaces */
                 text-decoration: underline !important;
             }
-             .text-mayan-gold, .highlight, .highlight-strong { color: #B8860B !important; }
+            .text-mayan-gold, .highlight, .highlight-strong { color: #B8860B !important; } /* Dorado oscuro para impresión */
             .text-mayan-dark-green, h1, h2, h3, p, li { color: #000000 !important; }
 
             .slide.bg-mayan-green { background-color: #ffffff !important; }
             .slide.bg-mayan-green .section-subtitle,
             .slide.bg-mayan-green .custom-list li,
-            .slide.bg-mayan-green .text-md,
+            .slide.bg-mayan-green .text-md, /* Asumiendo que .text-md es una clase que usas */
             .slide.bg-mayan-green p {
                 color: #000000 !important;
             }
@@ -299,23 +314,21 @@
              .slide.bg-mayan-green .highlight {
                  color: #B8860B !important;
              }
-            /* .slide-number y sus estilos de impresión eliminados */
 
-            h1.main-title { font-size: 20pt !important; margin-bottom: 0.5rem !important; }
-            h2 { font-size: 16pt !important; border-bottom: 1px solid #666666 !important; margin-bottom: 0.8rem !important; padding-bottom: 0.2rem !important;}
-            h3 { font-size: 13pt !important; color: #222222 !important; margin-bottom: 0.4rem !important; margin-top: 1rem !important;}
-            p, li { font-size: 10pt !important; line-height: 1.5 !important; text-align: justify !important; }
-            .custom-list li::before { color: #333333 !important; }
-            .section-subtitle { font-size: 12pt !important; color: #333333 !important; margin-bottom: 1rem !important; }
+            h1.main-title { font-size: 18pt !important; margin-bottom: 0.4cm !important; } /* Ligeramente más pequeño */
+            h2 { font-size: 15pt !important; border-bottom: 1px solid #555555 !important; margin-bottom: 0.6cm !important; padding-bottom: 0.15cm !important;}
+            h3 { font-size: 12pt !important; color: #111111 !important; margin-bottom: 0.3cm !important; margin-top: 0.8cm !important;}
+            p, li { font-size: 10pt !important; line-height: 1.45 !important; text-align: justify !important; }
+            .custom-list li::before { color: #222222 !important; } /* Íconos de lista más oscuros */
+            .section-subtitle { font-size: 11pt !important; color: #222222 !important; margin-bottom: 0.7cm !important; font-style: italic; }
             .slide-content > p.text-lg, .slide-content > p.text-xl, .slide-content > p.text-2xl { font-size: 10pt !important; }
             .custom-list { max-width: 100% !important; }
         }
-
     </style>
 </head>
 <body class="bg-mayan-light text-mayan-dark-green">
 
-    <section id="slide1" class="slide active bg-mayan-green text-white"> {/* Marcada como active para ser visible */}
+    <section id="slide1" class="slide bg-mayan-green text-white">
         <div class="slide-content">
             <img src="https://imagizer.imageshack.com/v2/800x600q70/922/yBm0Bi.png" alt="Logotipo Oficial de CHUUN" class="logo-slide-display">
             <h1 class="main-title font-black mb-3 text-mayan-gold">CHUUN: El Origen<br>SAGRADO de MayanCity</h1>
@@ -323,11 +336,10 @@
             <p class="mb-3 text-lg md:text-xl">Descubra <span class="font-bold text-mayan-gold text-2xl md:text-3xl">Chuun</span> (Origen en Maya): las <span class="highlight-strong">primeras y exclusivas 17.65 hectáreas</span>, seleccionadas del terreno original cuyos trabajos iniciales (deslinde y trazo) fueron supervisados por el prestigioso despacho <span class="font-bold">Artigas Arquitectos</span>. Chuun es el cimiento tangible de la <span class="font-bold">visionaria MayanCity</span>, conceptualizada por <span class="font-bold">Billy Springall</span>.</p>
             <p class="mb-6 text-lg md:text-xl">Hoy, usted no solo invierte en tierra; <span class="highlight">asegura un legado</span> en el origen certificado y <span class="font-bold underline">legalmente INEXPUGNABLE</span> de una futura metrópolis.</p>
             <p class="text-md italic opacity-80">12 de Mayo de 2025</p>
-            {/* Slide number div eliminado */}
         </div>
     </section>
 
-    <section id="slide2" class="slide active"> {/* Marcada como active */}
+    <section id="slide2" class="slide">
         <div class="slide-content">
             <img src="https://imagizer.imageshack.com/img924/5018/TWfTdu.png" alt="CHUUN: La Llave Maestra a MAYANCITY" class="slide-image">
             <a href="https://youtu.be/Vsbfr5_3_Pk?si=5XCLL8WVVhVPhLUd" target="_blank" class="external-link">MayanCity Teaser</a>
@@ -340,16 +352,15 @@
                 <li><span class="font-bold">Multiplicador de Valor Exponencial:</span> El inicio del desarrollo de MayanCity (próximamente) catapultará su inversión.</li>
                 <li><span class="font-bold">Confianza y Prestigio Absolutos:</span> Trabajos iniciales por <span class="font-bold">Artigas Arquitectos</span>, visión de <span class="font-bold">Billy Springall</span>, y <span class="highlight-strong">100% SEGURIDAD LEGAL</span> (Títulos de Propiedad, Fideicomiso Bx+, PFG Abogados).</li>
             </ul>
-            {/* Slide number div eliminado */}
         </div>
     </section>
 
-    <section id="slide3" class="slide active bg-gray-100"> {/* Marcada como active */}
+    <section id="slide3" class="slide bg-gray-100">
         <div class="slide-content">
             <img src="https://imagizer.imageshack.com/img924/4462/KExQ9o.png" alt="CHUUN: Corazón Estratégico de la Riviera Maya" class="slide-image">
             <a href="https://www.google.com/maps/d/edit?mid=1kC2KTBTcqa7z1kSqEZgyV0fS49exodo&usp=drive_link" target="_blank" class="external-link">Ver en Google Maps</a>
             <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">Ubicación ESTELAR: Km 27 Ruta de los Cenotes</h2>
-            <p class="section-subtitle text-mayan-dark-green text-xl">El Epicentro del Futuro Dorado y la Magia Ancestral de la Riviera Maya.</p>
+            <p class="section-subtitle text-xl">El Epicentro del Futuro Dorado y la Magia Ancestral de la Riviera Maya.</p>
             <p class="mb-4 text-lg"><span class="font-bold text-mayan-gold text-2xl">Chuun</span>, el génesis de MayanCity, se asienta en el <span class="font-bold">kilómetro 27 de la mítica Ruta de los Cenotes</span>. Una localización <span class="highlight">absolutamente privilegiada</span> por su belleza indómita, su energía ancestral y su <span class="highlight-strong">imparable valorización estratégica</span> y conectividad premium.</p>
             <p class="mb-6 text-lg">A escasos minutos de los vibrantes Cancún y Puerto Morelos, con acceso directo al Aeropuerto Internacional y <span class="highlight">múltiples estaciones del Tren Maya a un suspiro</span>, su inversión no solo está en tierra firme, está en el <span class="highlight-strong">epicentro de la nueva era</span> de la Riviera Maya.</p>
             <ul class="custom-list general-benefit-list text-left mx-auto max-w-xl">
@@ -357,11 +368,10 @@
                 <li>Conexión directa a infraestructura de primer orden y los destinos más codiciados del planeta.</li>
                 <li>Un entorno que <span class="highlight">garantiza un atractivo irresistible y una demanda creciente</span> para la futura MayanCity.</li>
             </ul>
-            {/* Slide number div eliminado */}
         </div>
     </section>
 
-    <section id="slide4" class="slide active"> {/* Marcada como active */}
+    <section id="slide4" class="slide">
         <div class="slide-content">
              <img src="https://imagizer.imageshack.com/img922/4066/giC1sn.png" alt="Avances de Obra en Sitio en Chuun: Avenidas Principales, Doble Acceso, Calles Secundarias." class="slide-image">
              <a href="https://drive.google.com/file/d/1LL4V_yvspgCS_ysbtSQ9YP3KDYOSngTb/view?usp=sharing" target="_blank" class="external-link">Lotificacion Chuun</a>
@@ -373,11 +383,10 @@
                 <li><span class="font-bold">Trazo físico de vialidades internas ecológicas</span> (sascab compactado de alta calidad) en la primera fase del proyecto original, de la cual se seleccionan las <span class="highlight">17.65 hectáreas de Chuun</span>. Esto incluye <span class="highlight">avenidas principales, doble acceso y calles secundarias ya definidas en sitio</span>.</li>
             </ul>
             <p class="text-lg">Esto se traduce en un <span class="highlight-strong">activo tangible, preparado y con supervisión experta de élite</span>, una plataforma sólida que <span class="highlight">pulveriza riscos</span> y está lista para ser el <span class="font-bold">génesis glorioso</span> de MayanCity. Usted adquiere tierra con <span class="font-bold">avances concretos y certificables a un precio de oportunidad irrepetible</span>.</p>
-            {/* Slide number div eliminado */}
         </div>
     </section>
 
-    <section id="slide5" class="slide active bg-mayan-green text-white"> {/* Marcada como active */}
+    <section id="slide5" class="slide bg-mayan-green text-white">
         <div class="slide-content">
             <img src="https://imagizer.imageshack.com/v2/800x600q70/922/gfC1Gd.png" alt="Chuun Inversión Blindada con Certeza Jurídica y respaldo PFG Abogados" class="slide-image">
             <a href="https://www.pfgabogados.com/" target="_blank" class="external-link !bg-mayan-gold !text-mayan-green hover:!bg-yellow-300 hover:!text-mayan-green hover:!border-mayan-green">PFG Abogados</a>
@@ -390,16 +399,15 @@
                 <li><span class="font-bold">BLINDAJE LEGAL POR PFG ABOGADOS:</span> Todo el entramado legal es orquestado y salvaguardado por Pérez Ferrer González Abogados, un despacho de <span class="highlight">élite y prestigio nacional</span> que garantiza la <span class="highlight-strong">solvencia total y el 100% de seguridad jurídica</span>.</li>
             </ul>
             <p class="mt-8 text-xl md:text-2xl">En <span class="font-bold text-mayan-gold">Chuun</span>, su patrimonio no solo está protegido, está <span class="highlight">FORTALECIDO</span> por los más altos estándares legales y financieros de México.</p>
-            {/* Slide number div eliminado */}
         </div>
     </section>
 
-    <section id="slide6" class="slide active bg-gray-100"> {/* Marcada como active */}
+    <section id="slide6" class="slide bg-gray-100">
         <div class="slide-content">
              <img src="https://imagizer.imageshack.com/v2/800x600q70/924/QOlLi5.png" alt="Lote Chuun: Su Pasaporte al Legado MayanCity" class="slide-image">
              <a href="https://youtu.be/gRX4M9ucY3s?si=o91_NG2iWbidXpph" target="_blank" class="external-link">Video Institucional MayanCity</a>
             <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">Terrenos de Inversión en Chuun: Su Pasaporte al Legado (~600 m²)</h2>
-            <p class="section-subtitle text-mayan-dark-green text-xl">Adquiera un Activo con Potencial ILIMITADO y la Paz Mental de una Seguridad Jurídica TOTAL.</p>
+            <p class="section-subtitle text-xl">Adquiera un Activo con Potencial ILIMITADO y la Paz Mental de una Seguridad Jurídica TOTAL.</p>
             <p class="mb-4 text-lg">Ofrecemos lotes de aproximadamente <span class="font-bold">600 m²</span> en <span class="font-bold text-mayan-gold text-2xl">Chuun</span>. Cada lote es una <span class="highlight-strong">participación directa, tangible y SEGURA</span> en el potencial ilimitado de MayanCity.</p>
             <p class="mb-4 text-lg">A un precio de <span class="highlight">$990 MXN/m²</span> (ejemplo dentro del rango $800-$1200), un lote de 600 m² representa una inversión inicial de solo <span class="font-bold text-2xl text-mayan-gold">$594,000 MXN</span>.</p>
             <p class="mb-6 text-lg">Una <span class="font-bold">inversión estratégica</span> comparada con el valor estratosférico que alcanzarán con el desarrollo de MayanCity. <span class="font-bold">Documentación impecable, títulos de propiedad individuales y fideicomiso bancario para su absoluta tranquilidad y confianza.</span></p>
@@ -407,11 +415,10 @@
                 <li>Lotes de ~600 m², dimensiones <span class="highlight">perfectas</span> para futuras residencias unifamiliares de lujo, santuarios personales integrados a la majestuosa selva de MayanCity.</li>
                 <li>Adquiera hoy a <span class="highlight-strong">precio de inversor PIONERO y VISIONARIO</span>, una ventaja exclusiva que se esfumará con el amanecer de MayanCity.</li>
             </ul>
-            {/* Slide number div eliminado */}
         </div>
     </section>
 
-    <section id="slide7" class="slide active"> {/* Marcada como active */}
+    <section id="slide7" class="slide">
         <div class="slide-content">
             <img src="https://imagizer.imageshack.com/img922/3894/K4wgce.png" alt="Visión Futura MayanCity por Billy Springall desde Chuun" class="slide-image">
             <a href="https://youtu.be/FQMfOivrJno?si=sfDMrxZEWOneHNYv" target="_blank" class="external-link">MayanCity: Ciudad Futura</a>
@@ -426,16 +433,15 @@
                 <li><span class="font-bold">Experiencias Inolvidables y Enriquecedoras:</span> La Fase 1 de MayanCity (155 ha) deslumbrará con un <span class="highlight">Cenote Urbano majestuoso</span> (laguna de 7ha, playas paradisíacas, zonas deportivas de élite), un <span class="font-bold">Wellness Centre & Hotel de calibre mundial</span>, y una profunda reverencia e integración de la rica herencia cultural maya.</li>
             </ul>
             <p class="mt-5 text-lg">Con la <span class="font-bold">genialidad conceptual de Springall</span>, la <span class="font-bold">solidez estructural de los trabajos iniciales de Artigas Arquitectos</span> en el proyecto original (del cual Chuun es la joya fundacional), y el <span class="font-bold">impulso de socios tecnológicos líderes</span> (Eco World Building, Solben, Binkio), esta es la <span class="highlight-strong">magnitud colosal del proyecto</span> que <span class="highlight">catapultará el valor de su inversión pionera en Chuun</span> a la estratósfera financiera.</p>
-            {/* Slide number div eliminado */}
         </div>
     </section>
 
-    <section id="slide8" class="slide active bg-gray-100"> {/* Marcada como active */}
+    <section id="slide8" class="slide bg-gray-100">
         <div class="slide-content">
             <img src="https://imagizer.imageshack.com/img924/8520/cyr5vm.png" alt="Proyección de Plusvalía Exponencial de Chuun" class="slide-image">
              <a href="https://gunnyadara.github.io/Chuun/" target="_blank" class="external-link">Analisis de Precios en la Zona</a>
             <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">Proyección de Plusvalía Chuun: Cifras de una Oportunidad HISTÓRICA</h2>
-            <p class="section-subtitle text-mayan-dark-green text-xl">Su Inversión Inteligente y Segura, Destinada a una Valorización Legendaria con MayanCity.</p>
+            <p class="section-subtitle text-xl">Su Inversión Inteligente y Segura, Destinada a una Valorización Legendaria con MayanCity.</p>
             <p class="mb-4 text-lg">Esta es la <span class="font-bold">joya de la corona</span> de su decisión. Adquiriendo en <span class="font-bold text-mayan-gold text-2xl">Chuun</span> a precios de $800-$1200 MXN/m²:</p>
             <ul class="text-left list-none space-y-3 text-lg mb-4 mx-auto max-w-xl bg-white p-6 rounded-lg shadow-xl">
                 <li><span class="font-bold">Inversión Base en Chuun (600m² a $990/m²):</span> <span class="text-mayan-dark-green font-semibold text-xl">$594,000 MXN</span>.</li>
@@ -445,11 +451,10 @@
             </ul>
             <p class="text-lg mb-4">Esta es una oportunidad <span class="highlight-strong">ÚNICA EN SU GENERACIÓN</span> para una <span class="highlight">capitalización acelerada y masiva</span>, impulsada por un desarrollo de <span class="font-bold">trascendencia mundial</span>, conceptualizado por las mentes más brillantes.</p>
             <p class="text-sm italic">*Estas proyecciones son estimaciones conservadoras basadas en análisis de mercado y supuestos actuales del proyecto MayanCity y no garantizan resultados futuros. El potencial real podría superar estas cifras. Consulte el dossier completo para detalles.</p>
-            {/* Slide number div eliminado */}
         </div>
     </section>
 
-    <section id="slide9" class="slide active"> {/* Marcada como active */}
+    <section id="slide9" class="slide">
         <div class="slide-content">
             <img src="https://imagizer.imageshack.com/img922/1599/DekHFJ.jpg" alt="Plan de Adquisición Chuun - Facilidades" class="slide-image">
             <h2 class="text-4xl md:text-5xl font-bold mb-5 text-mayan-gold">Plan de Adquisición VIP y Transparente (Mayo 2025)</h2>
@@ -472,12 +477,13 @@
                     </ul>
                 </div>
             </div>
+            <div class="mt-8 mb-6 print-center-button-container"> <a href="https://drive.google.com/file/d/1POCE_bHk_Yy3bsA1iW2kvfiYjyaaSY5O/view?usp=drive_link" target="_blank" class="btn-mayan">Proyecto Mayan City By Billy Springall</a>
+            </div>
             <p class="mt-10 text-xl font-semibold">Consulte hoy mismo por los detalles de escrituración y gastos de cierre <span class="underline">totalmente transparentes</span>. Nuestra asesoría personalizada está a su entera disposición.</p>
-            {/* Slide number div eliminado */}
         </div>
     </section>
 
-    <section id="slide10" class="slide active bg-mayan-green text-white"> {/* Marcada como active */}
+    <section id="slide10" class="slide bg-mayan-green text-white">
         <div class="slide-content">
             <img src="https://imagizer.imageshack.com/img922/9458/LWz30x.jpg" alt="Llamada a la Acción Chuun - Asegura tu Legado" class="slide-image">
             <h2 class="text-4xl md:text-5xl font-black mb-4 text-mayan-gold">¡Es SU Momento HISTÓRICO! Asegure Su Legado en Chuun AHORA</h2>
@@ -491,38 +497,28 @@
             <p class="text-2xl font-bold mb-5">No espere a contemplar la magnificencia de MayanCity desde afuera, anhelando haber sido parte de su <span class="font-bold text-mayan-gold text-3xl">origen sagrado, Chuun</span>.</p>
             <p class="text-2xl font-bold mb-10">Sea protagonista de esta nueva era. <span class="highlight-strong">Benefíciese como solo los verdaderos pioneros y visionarios lo hacen</span>.</p>
             <p class="mt-8 text-md italic opacity-80">*Lotes disponibles: Consulte con su Asesor de Ventas para disponibilidad en tiempo real. ¡Actúe rápido!*</p>
-            {/* Slide number div eliminado */}
         </div>
     </section>
 
-    <section id="slide11" class="slide active"> {/* Marcada como active */}
+    <section id="slide11" class="slide">
         <div class="slide-content">
             <div class="md:flex items-center justify-center space-y-6 md:space-y-0 md:space-x-8 mb-10">
                  <img src="https://imagizer.imageshack.com/img924/482/WqppCj.png" alt="Logotipo Oficial de CHUUN" class="logo-contact-display">
-                 </div>
+            </div>
             <h2 class="text-4xl md:text-5xl font-bold mb-8 text-mayan-gold">Atención Exclusiva y Personalizada para Inversores en Chuun</h2>
             <p class="mb-8 text-xl">Para acceder al <span class="font-bold">dossier de inversión completo y confidencial</span> de <span class="font-bold text-mayan-gold text-2xl">Chuun</span>, conocer la disponibilidad en tiempo real y asegurar su participación privilegiada en el origen de MayanCity, <span class="font-bold">contacte a la persona que le compartió este exclusivo dossier</span>.</p>
             <p class="text-2xl font-semibold text-mayan-dark-green">Ellos le guiarán personalmente en cada paso de esta trascendental oportunidad de inversión.</p>
-            {/* Slide number div eliminado */}
         </div>
     </section>
 
     <script>
-        // Script original modificado para que todos los slides sean visibles desde el inicio
-        // y ya no se necesita la numeración dinámica.
+        // Script simplificado. Ya no se gestiona la visibilidad de slides uno por uno.
+        // Todos los slides son visibles por defecto debido a los cambios en CSS.
         document.addEventListener('DOMContentLoaded', () => {
-            const slides = document.querySelectorAll('.slide');
-            slides.forEach(slide => {
-                // Aseguramos que todos los slides sean tratados como "activos" para el layout de página larga
-                slide.style.position = 'relative'; // Para que fluyan uno después del otro
-                slide.style.opacity = '1';
-                slide.style.display = 'flex'; // O 'block' si prefieres, pero flex estaba en tu original
-                slide.classList.add('active'); // Mantenemos la clase por si algún estilo residual la usa
-                slide.style.minHeight = 'auto'; // Para que no ocupen 100vh en la vista web de página larga
-            });
-
-            // El código de numeración de slides y botones de navegación fue eliminado
-            // según la solicitud de quitar los números de página y simplificar para una página larga / PDF.
+            // Podrías agregar aquí funcionalidades JS adicionales si fueran necesarias en el futuro
+            // para la vista de "página larga", pero por ahora, con los cambios de CSS,
+            // no se necesita JS para la visualización básica de los slides.
+            console.log("Dossier Chuun cargado y listo.");
         });
     </script>
 
