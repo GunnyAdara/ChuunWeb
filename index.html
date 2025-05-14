@@ -3,353 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHUUN: Origen de MayanCity - Dossier Exclusivo de Inversión Pionera con Certeza Jurídica</title>
+    <title>CHUUN: Origen de MayanCity - Dossier Exclusivo de Inversión Patrimonial con Certeza Jurídica</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;900&display=swap" rel="stylesheet"> 
     <style>
-        /* Estilos Generales */
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', sans-serif; 
             scroll-behavior: smooth;
-            line-height: 1.7;
+            line-height: 1.7; 
         }
         .slide {
+            min-height: 100vh;
+            /* scroll-snap-align: start; */ /* Comentado para flujo de una sola página */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 1.5rem 1.5rem; 
-            opacity: 1;
-            position: relative;
+            padding: 3rem 1.5rem; 
+            /* opacity: 0; */ /* Comentado para flujo de una sola página */
+            /* transition: opacity 0.8s ease-in-out, transform 0.5s ease-out; */ /* Comentado */
+            /* position: absolute; */ /* Comentado para flujo de una sola página */
             width: 100%;
-            margin-bottom: 1rem;
+            /* top: 0; */ /* Comentado */
+            /* left: 0; */ /* Comentado */
+            border-bottom: 2px dashed #D4AF37; /* Separador entre secciones */
         }
-        .slide:last-child {
-            margin-bottom: 0;
+        .slide:last-of-type {
+            border-bottom: none;
         }
-
+        /* .slide.active { */ /* Comentado para flujo de una sola página */
+            /* opacity: 1; */
+            /* position: relative;  */
+        /* } */
         .slide-content {
-            max-width: 950px;
-            width: 100%;
+            max-width: 950px; 
             text-align: center;
-            /* Default background for slide-content, good for dark slide backgrounds */
             background-color: rgba(255, 255, 255, 0.03); 
             padding: 2rem; 
-            border-radius: 1rem;
-            position: relative;
+            border-radius: 1rem; 
+            position: relative; 
         }
-
-        /* Antefondo para slides con fondo bg-gray-100 */
-        .slide.bg-gray-100 .slide-content {
-            background-color: rgba(0, 0, 0, 0.025); /* Sutil overlay oscuro */
-        }
-
-        /* Antefondo para slides con fondo claro por defecto (bg-mayan-light del body) */
-        /* Se aplica a slides que NO son bg-mayan-green Y NO son bg-gray-100 */
-        .slide:not(.bg-mayan-green):not(.bg-gray-100) .slide-content {
-            background-color: rgba(0, 0, 0, 0.02); /* Overlay oscuro aún más sutil */
-        }
-        
         h1, h2, h3 {
-            font-family: 'Roboto Slab', serif;
-            font-weight: 900;
+            font-family: 'Roboto Slab', serif; 
+            font-weight: 900; 
         }
-        h1.main-title {
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-            font-size: 2.75rem;
-            line-height: 1.2;
+        h1.main-title { 
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2); 
+            font-size: 2.75rem; 
+            line-height: 1.2; 
         }
-        .bg-mayan-light { background-color: #F9F7F1; }
-        .bg-mayan-green { background-color: #1A302A; }
-        .text-mayan-gold { color: #D4AF37; }
-        .text-mayan-dark-green { color: #152821; }
+        .bg-mayan-light { background-color: #F9F7F1; } 
+        .bg-mayan-green { background-color: #1A302A; } 
+        
+        .slide.bg-mayan-green h1.main-title,
+        .slide.bg-mayan-green .section-subtitle,
+        .slide.bg-mayan-green p {
+            color: #F9F7F1; 
+        }
+        .slide.bg-mayan-green .text-mayan-gold {
+            color: #D4AF37 !important;
+        }
+         .slide.bg-mayan-green .highlight-strong, .slide.bg-mayan-green .highlight {
+            color: #FCD34D !important; 
+        }
 
-        /* Botones y Enlaces */
+        .text-mayan-gold { color: #D4AF37; } 
+        .text-mayan-dark-green { color: #152821; } 
         .btn-mayan {
-            background-image: linear-gradient(to right, #D4AF37, #C99A2E);
-            color: #1A302A;
-            padding: 1rem 2.2rem;
-            border-radius: 0.75rem;
-            font-weight: 900;
+            background-image: linear-gradient(to right, #D4AF37, #C99A2E); 
+            color: #1A302A; 
+            padding: 1rem 2.2rem; 
+            border-radius: 0.75rem; 
+            font-weight: 900; 
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            text-transform: uppercase; 
+            letter-spacing: 0.08em; 
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); 
             display: inline-block;
-            text-decoration: none;
+            margin-top: 1rem; 
         }
         .btn-mayan:hover {
             background-image: linear-gradient(to right, #C99A2E, #B08525);
-            transform: translateY(-3px) scale(1.05);
+            transform: translateY(-3px) scale(1.05); 
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
         }
-        .external-link {
-            display: inline-block;
-            margin-top: 0.5rem;
-            margin-bottom: 1rem;
-            padding: 0.75rem 1.5rem;
-            background-color: #1A302A;
-            color: #D4AF37;
-            font-weight: bold;
+        
+        .slide-image { 
+            max-width: 100%; 
+            height: auto;   
+            max-height: 380px; 
+            object-fit: contain; 
+            margin: 0 auto 1rem auto; 
+            border-radius: 0.75rem; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .logo-slide-display { 
+            max-width: 520px; 
+            width: 100%; 
+            height: auto;
+            margin: 0 auto 1rem auto; 
             border-radius: 0.5rem;
+            object-fit: contain; 
+        }
+         .logo-contact-display { 
+            max-width: 200px; 
+            height: auto;
+            margin: 0 auto; 
+        }
+        .external-link { 
+            display: inline-block;
+            margin-top: 0.5rem; 
+            margin-bottom: 1rem; 
+            padding: 0.75rem 1.5rem; 
+            background-color: #1A302A; 
+            color: #D4AF37; 
+            font-weight: bold;
+            border-radius: 0.5rem; 
             text-decoration: none;
             transition: all 0.3s ease;
-            border: 2px solid #D4AF37;
+            border: 2px solid #D4AF37; 
         }
         .external-link:hover {
             background-color: #D4AF37;
             color: #1A302A;
             border-color: #1A302A;
         }
-
-        /* Imágenes */
-        .slide-image {
-            display: block;
-            max-width: 90%; 
-            width: auto;    
-            height: 380px;  
-            object-fit: contain; 
-            margin: 1rem auto 1.5rem auto;
-            border-radius: 0.75rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        #slide3 .slide-image,
-        #slide8 .slide-image { /* Estilo para que las imágenes de ubicación y plusvalía cubran su espacio */
-            width: 100%; 
-            max-width: 100%; 
-            object-fit: cover; 
-        }
-
-
-        .logo-slide-display {
-            display: block;
-            max-width: 520px;
-            width: 90%;
-            height: auto;
-            margin: 0 auto 1rem auto;
-            border-radius: 0.5rem;
-            object-fit: contain;
-        }
-         .logo-contact-display {
-            display: block;
-            max-width: 200px;
-            height: auto;
-            margin: 0 auto 1rem auto;
-        }
-
-        /* Texto y Listas */
-        .highlight, .highlight-strong {
+        
+        .highlight, .highlight-strong { 
             color: #D4AF37;
-            font-weight: 700;
+            font-weight: 700; 
         }
         .highlight-strong {
-            font-weight: 900;
-            font-size: 1.1em;
+            font-weight: 900; 
+            font-size: 1.1em; 
         }
-        .section-subtitle {
+        .section-subtitle { 
             font-family: 'Inter', sans-serif;
-            font-size: 1.35rem;
-            color: #e2e8f0; /* Color por defecto para slides con fondo oscuro (ej. bg-mayan-green) */
-            margin-bottom: 1.5rem;
-            font-weight: 400;
+            font-size: 1.35rem; 
+            color: #374151; 
+            margin-bottom: 1.5rem; 
+            font-weight: 400; 
         }
-        /* Ajuste de color de subtítulo para slides con fondo claro */
-        .slide:not(.bg-mayan-green) .section-subtitle { /* Para todos los que NO son bg-mayan-green */
-             color: #374151; /* Tailwind gray-700, buen contraste en fondos claros */
-        }
-        /* Si un slide específico de fondo claro necesita un color de subtítulo diferente, se puede añadir aquí */
-        /* .slide.bg-gray-100 .section-subtitle { color: #374151; } */ /* Ya cubierto por la regla anterior */
-
-
+        
         .custom-list {
             list-style: none;
             padding-left: 0;
-            text-align: left;
-            max-width: 750px;
+            text-align: left; 
+            max-width: 750px; 
             margin-left: auto;
             margin-right: auto;
         }
         .custom-list li {
             position: relative;
-            padding-left: 2.5rem;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            line-height: 1.8;
+            padding-left: 2.5rem; 
+            margin-bottom: 1rem; 
+            font-size: 1.1rem; 
+            line-height: 1.8; 
         }
         .custom-list li::before {
-            content: '📜';
+            content: '📜'; 
             position: absolute;
             left: 0;
-            color: #D4AF37;
-            font-size: 1.5rem;
-            top: 0px;
+            color: #D4AF37; 
+            font-size: 1.5rem; 
+            top: 0px; 
         }
-        .general-benefit-list li::before { content: '✨'; }
-        .vision-list li::before { content: '💡'; }
+        .general-benefit-list li::before {
+            content: '✨'; 
+        }
+        .vision-list li::before {
+            content: '💡'; 
+        }
+        
+        .slide.bg-mayan-green .custom-list li { color: #f3f4f6; } 
+        .slide.bg-mayan-green .custom-list li::before { color: #FCD34D; } 
 
-        .slide.bg-mayan-green .custom-list li { color: #f3f4f6; }
-        .slide.bg-mayan-green .custom-list li::before { color: #FCD34D; }
 
-        /* Media Queries para Responsividad */
-        @media (max-width: 768px) { /* Mobile */
-            .slide {
-                padding: 1rem 1rem; 
-                margin-bottom: 0.75rem;
-            }
+        @media (max-width: 768px) {
+            .slide { padding: 2rem 1rem; min-height: auto; } 
             .slide-content { padding: 1.5rem; }
-            h1.main-title { font-size: 2rem; line-height: 1.25; }
-            h2 { font-size: 1.75rem; }
-            .section-subtitle { font-size: 1.1rem; }
+            h1.main-title { font-size: 2rem; line-height: 1.25; } 
+            h2 { font-size: 1.75rem; } 
             .custom-list li { font-size: 1rem; padding-left: 2rem;}
             .custom-list li::before { font-size: 1.3rem;}
-            .logo-slide-display { max-width: 80%; margin-bottom:1rem;}
+            .logo-slide-display { max-width: 90%; margin-bottom:1rem;} 
             .logo-contact-display { max-width: 150px; }
             .btn-mayan { padding: 0.9rem 1.5rem; font-size: 0.9rem;}
-            .slide-image { 
-                height: 280px;
-                margin-bottom: 1rem;
-            }
-            #slide3 .slide-image, #slide8 .slide-image { 
-                 height: 280px; 
-            }
-            .external-link { padding: 0.6rem 1.2rem; font-size: 0.9rem;}
+            .slide-image { max-height: 300px; margin-bottom: 0.5rem;} 
+            .external-link { margin-top: 0.5rem; margin-bottom: 1rem; padding: 0.6rem 1.2rem; font-size: 0.9rem;}
         }
          @media (min-width: 769px) and (max-width: 1024px) { /* Tablet */
-            .slide { margin-bottom: 1rem; }
-            h1.main-title { font-size: 2.5rem; line-height: 1.2;}
-            h2 { font-size: 2.25rem; }
+            h1.main-title { font-size: 2.75rem; line-height: 1.2;} 
             .logo-slide-display { max-width: 450px; }
-            .slide-image { height: 350px; } 
-            #slide3 .slide-image, #slide8 .slide-image { 
-                 height: 350px; 
-            }
         }
         @media (min-width: 1025px) { /* Desktop */
-            h1.main-title { font-size: 3rem; line-height: 1.2;}
-            h2 { font-size: 2.75rem; }
+            h1.main-title { font-size: 3.25rem; line-height: 1.2;} 
         }
 
         /* ESTILOS PARA IMPRESIÓN / PDF */
         @media print {
             body {
-                font-size: 10pt;
+                font-size: 10pt; 
                 background-color: #ffffff !important;
                 color: #000000 !important;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
             }
             .slide {
-                display: block !important;
-                position: relative !important;
+                display: block !important; 
+                position: relative !important; 
                 opacity: 1 !important;
-                min-height: 0 !important;
-                height: auto !important;
-                width: 100% !important;
-                page-break-after: always;
-                padding: 0.75cm 1.2cm; 
+                min-height: 0 !important; 
+                height: auto !important; 
+                width: 100% !important; 
+                page-break-after: always; 
+                padding: 1.5cm 1cm; 
                 box-shadow: none !important;
                 border: none !important;
-                border-bottom: 1px solid #eaeaea !important;
-                margin-bottom: 0 !important;
+                border-bottom: 1px solid #eee !important; 
             }
             .slide:last-child {
-                page-break-after: auto;
+                page-break-after: auto; 
                 border-bottom: none !important;
             }
             .slide-content {
                 max-width: 100% !important;
-                padding: 0 !important; 
-                background-color: transparent !important; /* En impresión, el antefondo no se aplica, el contenido va directo sobre el fondo blanco del slide */
+                padding: 0 !important;
+                background-color: transparent !important;
                 border-radius: 0 !important;
                 box-shadow: none !important;
             }
-
-            .slide-image { 
-                display: block !important;
-                width: auto !important; 
-                max-width: 100% !important; 
-                height: 8cm !important;  
-                object-fit: contain !important; 
-                margin: 0.8cm auto 1cm auto !important;
-                border: 1px solid #cccccc !important;
-                border-radius: 0.2cm !important;
-                box-shadow: none !important;
-            }
-            #slide3 .slide-image, #slide8 .slide-image { 
-                width: 100% !important; 
-                object-fit: cover !important; 
-                height: 8cm !important; 
-            }
-
-            .logo-slide-display {
-                display: block !important;
-                max-width: 12cm !important;
-                width: auto !important;
+            .nav-button { display: none !important; }
+            .slide-image, .logo-slide-display, .logo-contact-display {
+                max-width: 80% !important; 
                 height: auto !important;
-                object-fit: contain !important;
-                margin: 0.5cm auto 0.8cm auto !important;
-                border: 1px solid #dddddd !important;
-                border-radius: 0.1cm !important;
+                margin: 1rem auto !important; 
+                display: block;
                 box-shadow: none !important;
+                border: 1px solid #dddddd !important; 
+            }
+             .logo-slide-display {
+                max-width: 70% !important; 
              }
-            .logo-contact-display {
-                display: block !important;
-                max-width: 6cm !important;
-                width: auto !important;
-                height: auto !important;
-                object-fit: contain !important;
-                margin: 0.5cm auto 0.8cm auto !important;
-                border: 1px solid #dddddd !important;
-                border-radius: 0.1cm !important;
-                box-shadow: none !important;
-            }
             .external-link, .btn-mayan {
                 border: 1px solid #333333 !important;
-                padding: 0.25cm 0.5cm !important;
+                padding: 0.3em 0.7em !important;
                 background-image: none !important;
                 background-color: #f0f0f0 !important;
                 color: #000000 !important;
-                text-decoration: none !important;
-                display: inline-block !important;
-                margin: 0.3cm auto !important;
+                text-decoration: none !important; 
+                display: inline-block !important; 
+                margin: 0.5rem 0.25rem; 
                 font-size: 9pt !important;
-                border-radius: 0.1cm !important;
             }
-            .print-center-button-container { 
-                text-align: center !important;
-                margin-top: 0.5cm !important;
-                margin-bottom: 0.5cm !important;
-            }
-            a {
-                color: #000077 !important;
+            a { 
+                color: #0000AA !important; 
                 text-decoration: underline !important;
             }
-            .text-mayan-gold, .highlight, .highlight-strong { color: #B8860B !important; }
+             .text-mayan-gold, .highlight, .highlight-strong { color: #B8860B !important; } 
             .text-mayan-dark-green, h1, h2, h3, p, li { color: #000000 !important; }
-
-            .slide.bg-mayan-green { background-color: #ffffff !important; }
-            .slide.bg-mayan-green .section-subtitle,
+            
+            .slide.bg-mayan-green { background-color: #ffffff !important; } 
+            .slide.bg-mayan-green .section-subtitle, 
             .slide.bg-mayan-green .custom-list li,
             .slide.bg-mayan-green .text-md,
-            .slide.bg-mayan-green p {
+            .slide.bg-mayan-green p { 
                 color: #000000 !important;
             }
              .slide.bg-mayan-green .text-mayan-gold,
-             .slide.bg-mayan-green .highlight-strong,
+             .slide.bg-mayan-green .highlight-strong, 
              .slide.bg-mayan-green .highlight {
                  color: #B8860B !important;
              }
 
-            h1.main-title { font-size: 18pt !important; margin-bottom: 0.4cm !important; }
-            h2 { font-size: 15pt !important; border-bottom: 1px solid #555555 !important; margin-bottom: 0.6cm !important; padding-bottom: 0.15cm !important;}
-            h3 { font-size: 12pt !important; color: #111111 !important; margin-bottom: 0.3cm !important; margin-top: 0.8cm !important;}
-            p, li { font-size: 10pt !important; line-height: 1.45 !important; text-align: justify !important; }
-            .custom-list li::before { color: #222222 !important; }
-            .section-subtitle { font-size: 11pt !important; color: #222222 !important; margin-bottom: 0.7cm !important; font-style: italic; }
-            .slide-content > p.text-lg, .slide-content > p.text-xl, .slide-content > p.text-2xl { font-size: 10pt !important; }
-            .custom-list { max-width: 100% !important; }
+            .slide-number { display: none !important; } 
+            
+            h1.main-title { font-size: 20pt !important; margin-bottom: 0.5rem !important; }
+            h2 { font-size: 16pt !important; border-bottom: 1px solid #666666 !important; margin-bottom: 0.8rem !important; padding-bottom: 0.2rem !important;}
+            h3 { font-size: 13pt !important; color: #222222 !important; margin-bottom: 0.4rem !important; margin-top: 1rem !important;}
+            p, li { font-size: 10pt !important; line-height: 1.5 !important; text-align: justify !important; } 
+            .custom-list li::before { color: #333333 !important; }
+            .section-subtitle { font-size: 12pt !important; color: #333333 !important; margin-bottom: 1rem !important; }
+            .slide-content > p.text-lg, .slide-content > p.text-xl, .slide-content > p.text-2xl { font-size: 10pt !important; } 
+            .custom-list { max-width: 100% !important; } 
         }
+
     </style>
 </head>
 <body class="bg-mayan-light text-mayan-dark-green">
@@ -358,8 +297,8 @@
         <div class="slide-content">
             <img src="https://imagizer.imageshack.com/v2/800x600q70/922/yBm0Bi.png" alt="Logotipo Oficial de CHUUN" class="logo-slide-display">
             <h1 class="main-title font-black mb-3 text-mayan-gold">CHUUN: El Origen<br>SAGRADO de MayanCity</h1>
-            <p class="section-subtitle font-semibold text-xl md:text-2xl">Un Dossier de Inversión Fundacional con <span class="text-white underline decoration-mayan-gold decoration-2">Absoluta Certeza Jurídica y Potencial ILIMITADO</span></p>
-            <p class="mb-3 text-lg md:text-xl">Descubra <span class="font-bold text-mayan-gold text-2xl md:text-3xl">Chuun</span> (Origen en Maya): las <span class="highlight-strong">primeras y exclusivas 17.65 hectáreas</span>, seleccionadas del terreno original cuyos trabajos iniciales (deslinde y trazo) fueron supervisados por el prestigioso despacho <span class="font-bold">Artigas Arquitectos</span>. Chuun es el cimiento tangible de la <span class="font-bold">visionaria MayanCity</span>, conceptualizada por <span class="font-bold">Billy Springall</span>.</p>
+            <p class="section-subtitle font-semibold text-xl md:text-2xl">Un Dossier de Inversión Patrimonial con <span class="text-white underline decoration-mayan-gold decoration-2">Absoluta Certeza Jurídica y Potencial ILIMITADO</span></p>
+            <p class="mb-3 text-lg md:text-xl">Descubra <span class="font-bold text-mayan-gold text-2xl md:text-3xl">Chuun</span> (Origen en Maya): las <span class="highlight-strong">primeras y exclusivas 17.65 hectáreas</span>, seleccionadas del terreno original cuyos trabajos iniciales (deslinde y trazo) fueron supervisados por el prestigioso despacho <a href="https://artigas.com.mx/" target="_blank" class="font-bold hover:underline">Artigas Arquitectos</a>. Chuun es el cimiento tangible de la <span class="font-bold">visionaria MayanCity</span>, conceptualizada por <a href="https://www.springall-mk.com/home" target="_blank" class="font-bold hover:underline">Billy Springall</a>.</p>
             <p class="mb-6 text-lg md:text-xl">Hoy, usted no solo invierte en tierra; <span class="highlight">asegura un legado</span> en el origen certificado y <span class="font-bold underline">legalmente INEXPUGNABLE</span> de una futura metrópolis.</p>
             <p class="text-md italic opacity-80">12 de Mayo de 2025</p>
         </div>
@@ -370,25 +309,23 @@
             <img src="https://imagizer.imageshack.com/img924/5018/TWfTdu.png" alt="CHUUN: La Llave Maestra a MAYANCITY" class="slide-image">
             <a href="https://youtu.be/Vsbfr5_3_Pk?si=5XCLL8WVVhVPhLUd" target="_blank" class="external-link">MayanCity Teaser</a>
             <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">La Oportunidad de SU VIDA: Inversión Estratégica y BLINDADA en Chuun</h2>
-            <p class="section-subtitle text-xl">El Momento es <span class="font-bold">AHORA</span>. El Futuro es <span class="font-bold">MAYANCITY</span>. Su Legado Comienza con <span class="font-bold text-mayan-gold">CHUUN</span>.</p>
-            <p class="mb-4 text-lg">La visión es <span class="font-bold">MayanCity</span>: una comunidad revolucionaria, un ecosistema de prosperidad. La oportunidad <span class="highlight-strong">ÚNICA E IRREPETIBLE</span> es <span class="font-bold text-mayan-gold text-2xl">Chuun</span>: <span class="highlight">17.65 hectáreas selectas</span>, tomadas de la primera fase del proyecto original cuyos trabajos iniciales fueron supervisados por <span class="font-bold">Artigas Arquitectos</span> y con <span class="highlight">absoluta certeza jurídica</span>, ofrecidas a un precio de entrada para <span class="font-bold">auténticos pioneros</span> que buscan capitalizar el nacimiento de MayanCity, la obra maestra de Billy Springall.</p>
+            <p class="section-subtitle text-mayan-dark-green text-xl">El Momento es <span class="font-bold">AHORA</span>. El Futuro es <span class="font-bold">MAYANCITY</span>. Su Legado Comienza con <span class="font-bold text-mayan-gold">CHUUN</span>.</p>
+            <p class="mb-4 text-lg">La visión es <span class="font-bold">MayanCity</span>: una comunidad revolucionaria, un ecosistema de prosperidad. La oportunidad <span class="highlight-strong">ÚNICA E IRREPETIBLE</span> es <span class="font-bold text-mayan-gold text-2xl">Chuun</span>: <span class="highlight">17.65 hectáreas selectas</span>, tomadas de la primera fase del proyecto original cuyos trabajos iniciales fueron supervisados por <a href="https://artigas.com.mx/" target="_blank" class="font-bold hover:underline">Artigas Arquitectos</a> y con <span class="highlight">absoluta certeza jurídica</span>, ofrecidas a un precio de entrada para <span class="font-bold">auténticos pioneros</span> que buscan capitalizar el nacimiento de MayanCity, la obra maestra de <a href="https://www.springall-mk.com/home" target="_blank" class="font-bold hover:underline">Billy Springall</a>.</p>
             <p class="mb-6 text-lg"><span class="font-bold">Próximamente</span>, MayanCity desplegará su magnificencia, y el valor de estos terrenos fundacionales <span class="highlight">explotará exponencialmente</span>. Esta es su entrada privilegiada, con <span class="font-bold">títulos de propiedad individuales y un entramado legal a prueba de todo</span>.</p>
             <ul class="custom-list general-benefit-list text-left mx-auto max-w-xl">
                 <li><span class="font-bold">Inversión Semilla de Alto Calibre:</span> Terrenos en Chuun a precios de <span class="highlight">$800 - $1,200 MXN/m²</span>. ¡Una ventana de oportunidad que se cerrará pronto!</li>
                 <li><span class="font-bold">Multiplicador de Valor Exponencial:</span> El inicio del desarrollo de MayanCity (próximamente) catapultará su inversión.</li>
-                <li><span class="font-bold">Confianza y Prestigio Absolutos:</span> Trabajos iniciales por <span class="font-bold">Artigas Arquitectos</span>, visión de <span class="font-bold">Billy Springall</span>, y <span class="highlight-strong">100% SEGURIDAD LEGAL</span> (Títulos de Propiedad, Fideicomiso Bx+, PFG Abogados).</li>
+                <li><span class="font-bold">Confianza y Prestigio Absolutos:</span> Trabajos iniciales por <a href="https://artigas.com.mx/" target="_blank" class="font-bold hover:underline">Artigas Arquitectos</a>, visión de <a href="https://www.springall-mk.com/home" target="_blank" class="font-bold hover:underline">Billy Springall</a>, y <span class="highlight-strong">100% SEGURIDAD LEGAL</span> (Títulos de Propiedad, Fideicomiso Bx+, PFG Abogados).</li>
             </ul>
-            <div class="mt-8 mb-2 print-center-button-container"> <a href="https://drive.google.com/file/d/1POCE_bHk_Yy3bsA1iW2kvfiYjyaaSY5O/view?usp=drive_link" target="_blank" class="btn-mayan">Proyecto Mayan City By Billy Springall</a>
-            </div>
         </div>
     </section>
 
     <section id="slide3" class="slide bg-gray-100">
         <div class="slide-content">
-            <img src="https://imagizer.imageshack.com/img924/4462/KExQ9o.png" alt="CHUUN: Corazón Estratégico de la Riviera Maya" class="slide-image"> 
+            <img src="https://imagizer.imageshack.com/img924/4462/KExQ9o.png" alt="CHUUN: Corazón Estratégico de la Riviera Maya" class="slide-image">
             <a href="https://www.google.com/maps/d/edit?mid=1kC2KTBTcqa7z1kSqEZgyV0fS49exodo&usp=drive_link" target="_blank" class="external-link">Ver en Google Maps</a>
             <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">Ubicación ESTELAR: Km 27 Ruta de los Cenotes</h2>
-            <p class="section-subtitle text-xl">El Epicentro del Futuro Dorado y la Magia Ancestral de la Riviera Maya.</p>
+            <p class="section-subtitle text-mayan-dark-green text-xl">El Epicentro del Futuro Dorado y la Magia Ancestral de la Riviera Maya.</p>
             <p class="mb-4 text-lg"><span class="font-bold text-mayan-gold text-2xl">Chuun</span>, el génesis de MayanCity, se asienta en el <span class="font-bold">kilómetro 27 de la mítica Ruta de los Cenotes</span>. Una localización <span class="highlight">absolutamente privilegiada</span> por su belleza indómita, su energía ancestral y su <span class="highlight-strong">imparable valorización estratégica</span> y conectividad premium.</p>
             <p class="mb-6 text-lg">A escasos minutos de los vibrantes Cancún y Puerto Morelos, con acceso directo al Aeropuerto Internacional y <span class="highlight">múltiples estaciones del Tren Maya a un suspiro</span>, su inversión no solo está en tierra firme, está en el <span class="highlight-strong">epicentro de la nueva era</span> de la Riviera Maya.</p>
             <ul class="custom-list general-benefit-list text-left mx-auto max-w-xl">
@@ -404,13 +341,13 @@
              <img src="https://imagizer.imageshack.com/img922/4066/giC1sn.png" alt="Avances de Obra en Sitio en Chuun: Avenidas Principales, Doble Acceso, Calles Secundarias." class="slide-image">
              <a href="https://drive.google.com/file/d/1LL4V_yvspgCS_ysbtSQ9YP3KDYOSngTb/view?usp=sharing" target="_blank" class="external-link">Lotificacion Chuun</a>
             <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">Chuun Hoy: La Base TANGIBLE de Su Inversión, con el Prestigio de Artigas</h2>
-            <p class="section-subtitle text-xl">Invierta sobre Realidades, no Promesas. Certeza y Calidad desde el Origen.</p>
-            <p class="mb-4 text-lg">Su inversión no es un salto al vacío. <span class="font-bold text-mayan-gold text-2xl">Chuun</span> le ofrece <span class="highlight">17.65 hectáreas selectas</span>, tomadas de la primera fase del proyecto original cuyos trabajos de campo (deslinde y trazo de vialidades) fueron supervisados por <span class="font-bold">Artigas Arquitectos</span>, un diferenciador <span class="font-bold">INVALUABLE</span>:</p>
+            <p class="section-subtitle text-mayan-dark-green text-xl">Invierta sobre Realidades, no Promesas. Certeza y Calidad desde el Origen.</p>
+            <p class="mb-4 text-lg">Su inversión no es un salto al vacío. <span class="font-bold text-mayan-gold text-2xl">Chuun</span> le ofrece <span class="highlight">17.65 hectáreas selectas</span>, tomadas de la primera fase del proyecto original cuyos trabajos de campo (deslinde y trazo de vialidades) fueron supervisados por <a href="https://artigas.com.mx/" target="_blank" class="font-bold hover:underline">Artigas Arquitectos</a>, un diferenciador <span class="font-bold">INVALUABLE</span>:</p>
             <ul class="custom-list general-benefit-list text-left mx-auto max-w-xl mb-4">
                 <li><span class="font-bold">Deslinde total</span> de la superficie del proyecto original completado.</li>
                 <li><span class="font-bold">Trazo físico de vialidades internas ecológicas</span> (sascab compactado de alta calidad) en la primera fase del proyecto original, de la cual se seleccionan las <span class="highlight">17.65 hectáreas de Chuun</span>. Esto incluye <span class="highlight">avenidas principales, doble acceso y calles secundarias ya definidas en sitio</span>.</li>
             </ul>
-            <p class="text-lg">Esto se traduce en un <span class="highlight-strong">activo tangible, preparado y con supervisión experta de élite</span>, una plataforma sólida que <span class="highlight">pulveriza riscos</span> y está lista para ser el <span class="font-bold">génesis glorioso</span> de MayanCity. Usted adquiere tierra con <span class="font-bold">avances concretos y certificables a un precio de oportunidad irrepetible</span>.</p>
+            <p class="text-lg">Esto se traduce en un <span class="highlight-strong">activo tangible, preparado y con supervisión experta de élite</span>, una plataforma sólida que <span class="highlight">pulveriza riesgos</span> y está lista para ser el <span class="font-bold">génesis glorioso</span> de MayanCity. Usted adquiere tierra con <span class="font-bold">avances concretos y certificables a un precio de oportunidad irrepetible</span>.</p>
         </div>
     </section>
 
@@ -424,7 +361,7 @@
             <ul class="custom-list text-left mx-auto max-w-2xl text-xl md:text-2xl">
                 <li><span class="font-bold">TÍTULOS DE PROPIEDAD INDIVIDUALES Y PLENOS:</span> ¡Adiós a las incertidumbres! Las tierras de Chuun cuentan con <span class="highlight-strong">TÍTULO DE PROPIEDAD PRIVADA</span>, no meras cesiones de derechos ejidales. ¡Es SUYO, sin peros!</li>
                 <li><span class="font-bold">FIDEICOMISO BANCARIO CON BX+ (VE POR MÁS):</span> Para su <span class="highlight">máxima seguridad, transparencia y protección patrimonial</span>, la tierra está administrada bajo un fideicomiso con el <span class="font-bold">reconocido y sólido banco Ve por Más (Bx+)</span>.</li>
-                <li><span class="font-bold">BLINDAJE LEGAL POR PFG ABOGADOS:</span> Todo el entramado legal es orquestado y salvaguardado por Pérez Ferrer González Abogados, un despacho de <span class="highlight">élite y prestigio nacional</span> que garantiza la <span class="highlight-strong">solvencia total y el 100% de seguridad jurídica</span>.</li>
+                <li><span class="font-bold">BLINDAJE LEGAL POR PFG Abogados:</span> Todo el entramado legal es orquestado y salvaguardado por PFG Abogados, un despacho de <span class="highlight">élite y prestigio nacional</span> que garantiza la <span class="highlight-strong">solvencia total y el 100% de seguridad jurídica</span>.</li>
             </ul>
             <p class="mt-8 text-xl md:text-2xl">En <span class="font-bold text-mayan-gold">Chuun</span>, su patrimonio no solo está protegido, está <span class="highlight">FORTALECIDO</span> por los más altos estándares legales y financieros de México.</p>
         </div>
@@ -434,13 +371,13 @@
         <div class="slide-content">
              <img src="https://imagizer.imageshack.com/v2/800x600q70/924/QOlLi5.png" alt="Lote Chuun: Su Pasaporte al Legado MayanCity" class="slide-image">
              <a href="https://youtu.be/gRX4M9ucY3s?si=o91_NG2iWbidXpph" target="_blank" class="external-link">Video Institucional MayanCity</a>
-            <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">Terrenos de Inversión en Chuun: Su Pasaporte al Legado (~600 m²)</h2>
-            <p class="section-subtitle text-xl">Adquiera un Activo con Potencial ILIMITADO y la Paz Mental de una Seguridad Jurídica TOTAL.</p>
-            <p class="mb-4 text-lg">Ofrecemos lotes de aproximadamente <span class="font-bold">600 m²</span> en <span class="font-bold text-mayan-gold text-2xl">Chuun</span>. Cada lote es una <span class="highlight-strong">participación directa, tangible y SEGURA</span> en el potencial ilimitado de MayanCity.</p>
+            <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">Terrenos de Inversión en Chuun: Su Pasaporte al Legado (~600 m² a ~900 m²)</h2>
+            <p class="section-subtitle text-mayan-dark-green text-xl">Adquiera un Activo con Potencial ILIMITADO y la Paz Mental de una Seguridad Jurídica TOTAL.</p>
+            <p class="mb-4 text-lg">Ofrecemos lotes desde aproximadamente <span class="font-bold">600 m² hasta 900 m²</span> en <span class="font-bold text-mayan-gold text-2xl">Chuun</span>. Cada lote es una <span class="highlight-strong">participación directa, tangible y SEGURA</span> en el potencial ilimitado de MayanCity.</p>
             <p class="mb-4 text-lg">A un precio de <span class="highlight">$990 MXN/m²</span> (ejemplo dentro del rango $800-$1200), un lote de 600 m² representa una inversión inicial de solo <span class="font-bold text-2xl text-mayan-gold">$594,000 MXN</span>.</p>
             <p class="mb-6 text-lg">Una <span class="font-bold">inversión estratégica</span> comparada con el valor estratosférico que alcanzarán con el desarrollo de MayanCity. <span class="font-bold">Documentación impecable, títulos de propiedad individuales y fideicomiso bancario para su absoluta tranquilidad y confianza.</span></p>
             <ul class="custom-list general-benefit-list text-left mx-auto max-w-xl">
-                <li>Lotes de ~600 m², dimensiones <span class="highlight">perfectas</span> para futuras residencias unifamiliares de lujo, santuarios personales integrados a la majestuosa selva de MayanCity.</li>
+                <li>Lotes de ~600 m² a ~900 m², dimensiones <span class="highlight">perfectas</span> para futuras residencias unifamiliares de lujo, santuarios personales integrados a la majestuosa selva de MayanCity.</li>
                 <li>Adquiera hoy a <span class="highlight-strong">precio de inversor PIONERO y VISIONARIO</span>, una ventaja exclusiva que se esfumará con el amanecer de MayanCity.</li>
             </ul>
         </div>
@@ -450,9 +387,9 @@
         <div class="slide-content">
             <img src="https://imagizer.imageshack.com/img922/3894/K4wgce.png" alt="Visión Futura MayanCity por Billy Springall desde Chuun" class="slide-image">
             <a href="https://youtu.be/FQMfOivrJno?si=sfDMrxZEWOneHNYv" target="_blank" class="external-link">MayanCity: Ciudad Futura</a>
-            <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">La Visión MayanCity por Billy Springall: El Impulso Decisivo de Su Plusvalía</h2>
-            <p class="section-subtitle text-xl"><span class="font-bold text-mayan-gold text-2xl">Chuun</span> es su Acceso Exclusivo a una Metrópolis del Mañana, Diseñada para Trascender.</p>
-            <p class="mb-4 text-lg">Su inversión en <span class="font-bold text-mayan-gold text-2xl">Chuun</span> es el <span class="highlight-strong">pasaporte dorado</span> hacia <span class="font-bold">MayanCity</span>, una revolucionaria ciudad de <span class="highlight">más de 1,600 hectáreas</span>. Pre-conceptualizada por el <span class="font-bold">genio visionario, Arq. Billy Springall</span>, MayanCity está destinada a ser <span class="highlight-strong">ANTROPOGÉNICAMENTE POSITIVA</span>: un paradigma urbano que no solo conserva la selva, sino que la <span class="font-bold">REVITALIZA, REFUERZA y PROTEGE</span>, elevando activamente el ecosistema y la calidad de vida a niveles insospechados.</p>
+            <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">La Visión MayanCity por <a href="https://www.springall-mk.com/home" target="_blank" class="text-mayan-gold hover:underline">Billy Springall</a>: El Impulso Decisivo de Su Plusvalía</h2>
+            <p class="section-subtitle text-mayan-dark-green text-xl"><span class="font-bold text-mayan-gold text-2xl">Chuun</span> es su Acceso Exclusivo a una Metrópolis del Mañana, Diseñada para Trascender.</p>
+            <p class="mb-4 text-lg">Su inversión en <span class="font-bold text-mayan-gold text-2xl">Chuun</span> es el <span class="highlight-strong">pasaporte dorado</span> hacia <span class="font-bold">MayanCity</span>, una revolucionaria ciudad de <span class="highlight">más de 1,600 hectáreas</span>. Pre-conceptualizada por el <span class="font-bold">genio visionario, Arq. <a href="https://www.springall-mk.com/home" target="_blank" class="text-mayan-dark-green hover:text-mayan-gold hover:underline">Billy Springall</a></span>, MayanCity está destinada a ser <span class="highlight-strong">ANTROPOGÉNICAMENTE POSITIVA</span>: un paradigma urbano que no solo conserva la selva, sino que la <span class="font-bold">REVITALIZA, REFUERZA y PROTEGE</span>, elevando activamente el ecosistema y la calidad de vida a niveles insospechados.</p>
             <p class="mb-3 text-lg"><span class="font-bold">Próximamente</span>, MayanCity materializará una visión integral que fusiona principios ancestrales con innovación futurista:</p>
             <ul class="custom-list vision-list text-left mx-auto max-w-3xl text-lg">
                 <li><span class="font-bold">Ciudad Humanista y Orgánica Viva:</span> Centrada en el bienestar humano, policéntrica ("ciudad de 15 minutos"), con "Cenotes Urbanos" como corazones vibrantes de actividad social y económica, rodeados por "Jungle Clusters" residenciales de <span class="highlight">ultra baja densidad</span> (solo 12% de ocupación) para una <span class="highlight-strong">inmersión total y respetuosa en la selva</span>.</li>
@@ -460,7 +397,8 @@
                 <li><span class="font-bold">Tecnología de Punta al Servicio de la Vida:</span> Inteligencia Artificial para una eficiencia sin precedentes, un Metaverso para experiencias comunitarias y comerciales inmersivas, Blockchain (Binkio) para una gobernanza transparente y una economía tokenizada, y un <span class="highlight">sistema de movilidad multimodal futurista</span> (Autotren, extensas ciclovías y senderos para vehículos eléctricos ligeros) que redefine la conexión minimizando el impacto.</li>
                 <li><span class="font-bold">Experiencias Inolvidables y Enriquecedoras:</span> La Fase 1 de MayanCity (155 ha) deslumbrará con un <span class="highlight">Cenote Urbano majestuoso</span> (laguna de 7ha, playas paradisíacas, zonas deportivas de élite), un <span class="font-bold">Wellness Centre & Hotel de calibre mundial</span>, y una profunda reverencia e integración de la rica herencia cultural maya.</li>
             </ul>
-            <p class="mt-5 text-lg">Con la <span class="font-bold">genialidad conceptual de Springall</span>, la <span class="font-bold">solidez estructural de los trabajos iniciales de Artigas Arquitectos</span> en el proyecto original (del cual Chuun es la joya fundacional), y el <span class="font-bold">impulso de socios tecnológicos líderes</span> (Eco World Building, Solben, Binkio), esta es la <span class="highlight-strong">magnitud colosal del proyecto</span> que <span class="highlight">catapultará el valor de su inversión pionera en Chuun</span> a la estratósfera financiera.</p>
+            <p class="mt-5 text-lg">Con la <span class="font-bold">genialidad conceptual de <a href="https://www.springall-mk.com/home" target="_blank" class="text-mayan-dark-green hover:text-mayan-gold hover:underline">Springall</a></span>, la <span class="font-bold">solidez estructural de los trabajos iniciales de <a href="https://artigas.com.mx/" target="_blank" class="text-mayan-dark-green hover:text-mayan-gold hover:underline">Artigas Arquitectos</a></span> en el proyecto original (del cual Chuun es la joya fundacional), y el <span class="font-bold">impulso de socios tecnológicos líderes</span> (Eco World Building, Solben, Binkio), esta es la <span class="highlight-strong">magnitud colosal del proyecto</span> que <span class="highlight">catapultará el valor de su inversión pionera en Chuun</span> a la estratósfera financiera.</p>
+            <a href="#" class="btn-mayan mt-8">Proyecto MayanCity By Billy Springall</a> 
         </div>
     </section>
 
@@ -469,7 +407,7 @@
             <img src="https://imagizer.imageshack.com/img924/8520/cyr5vm.png" alt="Proyección de Plusvalía Exponencial de Chuun" class="slide-image">
              <a href="https://gunnyadara.github.io/Chuun/" target="_blank" class="external-link">Analisis de Precios en la Zona</a>
             <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">Proyección de Plusvalía Chuun: Cifras de una Oportunidad HISTÓRICA</h2>
-            <p class="section-subtitle text-xl">Su Inversión Inteligente y Segura, Destinada a una Valorización Legendaria con MayanCity.</p>
+            <p class="section-subtitle text-mayan-dark-green text-xl">Su Inversión Inteligente y Segura, Destinada a una Valorización Legendaria con MayanCity.</p>
             <p class="mb-4 text-lg">Esta es la <span class="font-bold">joya de la corona</span> de su decisión. Adquiriendo en <span class="font-bold text-mayan-gold text-2xl">Chuun</span> a precios de $800-$1200 MXN/m²:</p>
             <ul class="text-left list-none space-y-3 text-lg mb-4 mx-auto max-w-xl bg-white p-6 rounded-lg shadow-xl">
                 <li><span class="font-bold">Inversión Base en Chuun (600m² a $990/m²):</span> <span class="text-mayan-dark-green font-semibold text-xl">$594,000 MXN</span>.</li>
@@ -486,7 +424,7 @@
         <div class="slide-content">
             <img src="https://imagizer.imageshack.com/img922/1599/DekHFJ.jpg" alt="Plan de Adquisición Chuun - Facilidades" class="slide-image">
             <h2 class="text-4xl md:text-5xl font-bold mb-5 text-mayan-gold">Plan de Adquisición VIP y Transparente (Mayo 2025)</h2>
-            <p class="section-subtitle text-xl">Su Acceso Exclusivo y Simplificado como Inversor Fundador en <span class="font-bold text-mayan-gold">Chuun</span>.</p>
+            <p class="section-subtitle text-mayan-dark-green text-xl">Su Acceso Exclusivo y Simplificado como Inversor Fundador en <span class="font-bold text-mayan-gold">Chuun</span>.</p>
             <p class="mb-6 text-lg">Diseñado para una <span class="highlight-strong">decisión ágil, inteligente y 100% segura</span>, con documentación impecable y procesos cristalinos:</p>
             <div class="md:flex md:space-x-8 space-y-8 md:space-y-0 text-left max-w-4xl mx-auto">
                 <div class="flex-1 p-8 bg-gray-50 rounded-2xl shadow-xl border-t-8 border-mayan-gold hover:shadow-2xl transition-shadow duration-300">
@@ -538,10 +476,40 @@
     </section>
 
     <script>
-        // Script simplificado.
+        // Script para la numeración de slides en la vista web 
+        const slides = document.querySelectorAll('.slide');
+        const slideNumbers = document.querySelectorAll('.slide-number'); 
+        const totalSlides = slides.length;
+
+        function updateSlideNumbers() {
+            slides.forEach((slide, index) => {
+                const slideNumberDiv = slide.querySelector('.slide-number');
+                if (slideNumberDiv) { 
+                    slideNumberDiv.textContent = `Página ${index + 1} de ${totalSlides}`;
+                }
+            });
+        }
+        
         document.addEventListener('DOMContentLoaded', () => {
-            console.log("Dossier Chuun cargado y listo.");
+            slides.forEach(slide => {
+                slide.style.position = 'relative'; 
+                slide.style.opacity = '1';
+                slide.style.display = 'flex'; 
+            });
+            updateSlideNumbers();
         });
+
+        const contactButton = document.querySelector('a[href="#slide11"]'); 
+        if(contactButton) {
+            contactButton.addEventListener('click', function(e) {
+                const targetSlideId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetSlideId);
+                if (targetElement) {
+                    e.preventDefault(); 
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
     </script>
 
 </body>
