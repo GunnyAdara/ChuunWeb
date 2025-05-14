@@ -15,18 +15,15 @@
             line-height: 1.7;
         }
         .slide {
-            /* min-height: 100vh;  Eliminado para el modo "long page" web */
-            scroll-snap-align: start; /* Mantenido por si se usa en un contenedor de scroll-snap */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 3rem 1.5rem;
-            opacity: 1; /* Todos los slides visibles por defecto */
-            position: relative; /* Para que fluyan en el documento */
+            padding: 1.5rem 1.5rem; 
+            opacity: 1;
+            position: relative;
             width: 100%;
-            /* top: 0; left: 0; Ya no son absolutos */
-            margin-bottom: 1rem; /* Espacio entre slides REDUCIDO A LA MITAD */
+            margin-bottom: 1rem;
         }
         .slide:last-child {
             margin-bottom: 0;
@@ -34,10 +31,10 @@
 
         .slide-content {
             max-width: 950px;
-            width: 100%; /* Asegura que el contenido use el ancho disponible */
+            width: 100%;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.03); /* Casi transparente, revisar si es intencional */
-            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 2rem; 
             border-radius: 1rem;
             position: relative;
         }
@@ -66,8 +63,8 @@
             text-transform: uppercase;
             letter-spacing: 0.08em;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-            display: inline-block; /* Para que el margin auto funcione si se aplica */
-            text-decoration: none; /* Asegurar que no haya subrayado de enlace */
+            display: inline-block;
+            text-decoration: none;
         }
         .btn-mayan:hover {
             background-image: linear-gradient(to right, #C99A2E, #B08525);
@@ -94,20 +91,34 @@
         }
 
         /* Imágenes */
-        .slide-image { /* Estilo UNIFICADO para imágenes principales de slide (WEB) */
-            display: block; /* Para centrar con margin: auto */
-            max-width: 90%; /* Limita el ancho máximo, especialmente para imágenes muy anchas */
-            width: auto;    /* El ancho se ajusta para mantener la proporción */
-            height: 380px;  /* ALTURA FIJA para homologar en la web */
-            object-fit: contain; /* Asegura que toda la imagen quepa sin recortar, manteniendo proporción */
-            margin: 1rem auto 1.5rem auto; /* Centrado y espaciado */
+        .slide-image {
+            display: block;
+            max-width: 90%; 
+            width: auto;    
+            height: 380px;  
+            object-fit: contain; 
+            margin: 1rem auto 1.5rem auto;
             border-radius: 0.75rem;
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
+        /* Specific style for the location image in Slide 3 */
+        #slide3 .slide-image {
+            width: 100%; 
+            max-width: 100%; /* Allow it to take full width of its container */
+            object-fit: cover; 
+        }
+        /* Specific style for the Proyección de Plusvalía image in Slide 8 */
+        #slide8 .slide-image {
+            width: 100%;
+            max-width: 100%; /* Allow it to take full width of its container */
+            object-fit: cover;
+        }
+
+
         .logo-slide-display {
             display: block;
             max-width: 520px;
-            width: 90%; /* Más responsivo en contenedores pequeños */
+            width: 90%;
             height: auto;
             margin: 0 auto 1rem auto;
             border-radius: 0.5rem;
@@ -117,7 +128,7 @@
             display: block;
             max-width: 200px;
             height: auto;
-            margin: 0 auto 1rem auto; /* Añadido margen inferior */
+            margin: 0 auto 1rem auto;
         }
 
         /* Texto y Listas */
@@ -132,18 +143,18 @@
         .section-subtitle {
             font-family: 'Inter', sans-serif;
             font-size: 1.35rem;
-            color: #e2e8f0; /* Color por defecto para slides oscuros */
+            color: #e2e8f0;
             margin-bottom: 1.5rem;
             font-weight: 400;
         }
         .slide.bg-mayan-green .section-subtitle {
-             color: #d1d5db; /* gray-300 para slides verdes */
+             color: #d1d5db;
         }
-        .slide:not(.bg-mayan-green):not(.bg-gray-100) .section-subtitle { /* Para slides con fondo claro por defecto (bg-mayan-light) */
-            color: #4b5563; /* gray-600, un poco más oscuro que antes */
+        .slide:not(.bg-mayan-green):not(.bg-gray-100) .section-subtitle {
+            color: #4b5563;
         }
-        .slide.bg-gray-100 .section-subtitle { /* Específico para slides con bg-gray-100 */
-             color: #374151; /* gray-700 */
+        .slide.bg-gray-100 .section-subtitle {
+             color: #374151;
         }
 
         .custom-list {
@@ -177,34 +188,43 @@
 
         /* Media Queries para Responsividad */
         @media (max-width: 768px) { /* Mobile */
-            .slide { padding: 2rem 1rem; margin-bottom: 0.75rem; /* Reducido también para mobile */ }
+            .slide {
+                padding: 1rem 1rem; 
+                margin-bottom: 0.75rem;
+            }
             .slide-content { padding: 1.5rem; }
             h1.main-title { font-size: 2rem; line-height: 1.25; }
-            h2 { font-size: 1.75rem; } /* Reducido para mobile */
+            h2 { font-size: 1.75rem; }
             .section-subtitle { font-size: 1.1rem; }
             .custom-list li { font-size: 1rem; padding-left: 2rem;}
             .custom-list li::before { font-size: 1.3rem;}
             .logo-slide-display { max-width: 80%; margin-bottom:1rem;}
             .logo-contact-display { max-width: 150px; }
             .btn-mayan { padding: 0.9rem 1.5rem; font-size: 0.9rem;}
-            .slide-image {
-                height: 280px; /* Altura ajustada para mobile */
+            .slide-image { 
+                height: 280px;
                 margin-bottom: 1rem;
+            }
+            #slide3 .slide-image, #slide8 .slide-image { 
+                 height: 280px; 
             }
             .external-link { padding: 0.6rem 1.2rem; font-size: 0.9rem;}
         }
          @media (min-width: 769px) and (max-width: 1024px) { /* Tablet */
-            .slide { margin-bottom: 1rem; /* Mantenemos el margen reducido */ }
-            h1.main-title { font-size: 2.5rem; line-height: 1.2;} /* Ajustado para tablet */
+            .slide { margin-bottom: 1rem; }
+            h1.main-title { font-size: 2.5rem; line-height: 1.2;}
             h2 { font-size: 2.25rem; }
             .logo-slide-display { max-width: 450px; }
-            .slide-image { height: 350px; } /* Altura ajustada para tablet */
+            .slide-image { height: 350px; } 
+            #slide3 .slide-image, #slide8 .slide-image { 
+                 height: 350px; 
+            }
         }
         @media (min-width: 1025px) { /* Desktop */
-            /* El margin-bottom: 1rem; ya está aplicado en la regla general de .slide */
-            h1.main-title { font-size: 3rem; line-height: 1.2;} /* Ligeramente ajustado */
+            h1.main-title { font-size: 3rem; line-height: 1.2;}
             h2 { font-size: 2.75rem; }
-            /* La altura de .slide-image para desktop ya está en 380px (estilo base) */
+            /* .slide-image height for desktop is 380px from base style */
+            /* #slide3 .slide-image and #slide8 .slide-image inherit this 380px height */
         }
 
         /* ESTILOS PARA IMPRESIÓN / PDF */
@@ -224,11 +244,11 @@
                 height: auto !important;
                 width: 100% !important;
                 page-break-after: always;
-                padding: 0.75cm 1.2cm; /* MÁRGENES SUPERIOR/INFERIOR REDUCIDOS A LA MITAD */
+                padding: 0.75cm 1.2cm; 
                 box-shadow: none !important;
                 border: none !important;
-                border-bottom: 1px solid #eaeaea !important; /* Borde más sutil */
-                margin-bottom: 0 !important; /* Sin margen inferior en impresión */
+                border-bottom: 1px solid #eaeaea !important;
+                margin-bottom: 0 !important;
             }
             .slide:last-child {
                 page-break-after: auto;
@@ -236,28 +256,34 @@
             }
             .slide-content {
                 max-width: 100% !important;
-                padding: 0 !important;
+                padding: 0 !important; 
                 background-color: transparent !important;
                 border-radius: 0 !important;
                 box-shadow: none !important;
             }
 
-            .slide-image { /* Estilo UNIFICADO para imágenes principales de slide (PDF) */
+            .slide-image { 
                 display: block !important;
-                width: auto !important; /* Ancho se ajusta a la altura y max-width */
-                max-width: 100% !important; /* Que no exceda el contenedor, pero la altura es la clave */
-                height: 8cm !important;  /* ALTURA FIJA para homologar en PDF */
-                object-fit: contain !important; /* Mantiene proporción, asegura que quepa */
-                margin: 0.8cm auto 1cm auto !important; /* Centrado y espaciado (cm) */
-                border: 1px solid #cccccc !important; /* Borde más sutil */
+                width: auto !important; 
+                max-width: 100% !important; 
+                height: 8cm !important;  
+                object-fit: contain !important; 
+                margin: 0.8cm auto 1cm auto !important;
+                border: 1px solid #cccccc !important;
                 border-radius: 0.2cm !important;
                 box-shadow: none !important;
             }
+            #slide3 .slide-image, #slide8 .slide-image { /* Specific print style for location and plusvalia images */
+                width: 100% !important; 
+                object-fit: cover !important; 
+                height: 8cm !important; 
+            }
+
             .logo-slide-display {
                 display: block !important;
-                max-width: 12cm !important; /* Tamaño fijo para consistencia */
+                max-width: 12cm !important;
                 width: auto !important;
-                height: auto !important; /* La altura se ajusta */
+                height: auto !important;
                 object-fit: contain !important;
                 margin: 0.5cm auto 0.8cm auto !important;
                 border: 1px solid #dddddd !important;
@@ -266,7 +292,7 @@
              }
             .logo-contact-display {
                 display: block !important;
-                max-width: 6cm !important; /* Tamaño fijo para consistencia */
+                max-width: 6cm !important;
                 width: auto !important;
                 height: auto !important;
                 object-fit: contain !important;
@@ -275,37 +301,34 @@
                 border-radius: 0.1cm !important;
                 box-shadow: none !important;
             }
-            .external-link, .btn-mayan { /* Estilo unificado para impresión */
+            .external-link, .btn-mayan {
                 border: 1px solid #333333 !important;
-                padding: 0.25cm 0.5cm !important; /* Usando cm para consistencia */
+                padding: 0.25cm 0.5cm !important;
                 background-image: none !important;
                 background-color: #f0f0f0 !important;
                 color: #000000 !important;
                 text-decoration: none !important;
-                display: inline-block !important; /* Asegurar que se muestre */
-                margin: 0.3cm auto !important; /* Margen auto para centrar si es el único elemento en una línea */
+                display: inline-block !important;
+                margin: 0.3cm auto !important;
                 font-size: 9pt !important;
                 border-radius: 0.1cm !important;
             }
-            /* Para centrar el botón específicamente si está solo en un div o párrafo */
-            .print-center-button-container {
+            .print-center-button-container { 
                 text-align: center !important;
                 margin-top: 0.5cm !important;
                 margin-bottom: 0.5cm !important;
             }
-
-
             a {
-                color: #000077 !important; /* Azul un poco más oscuro para enlaces */
+                color: #000077 !important;
                 text-decoration: underline !important;
             }
-            .text-mayan-gold, .highlight, .highlight-strong { color: #B8860B !important; } /* Dorado oscuro para impresión */
+            .text-mayan-gold, .highlight, .highlight-strong { color: #B8860B !important; }
             .text-mayan-dark-green, h1, h2, h3, p, li { color: #000000 !important; }
 
             .slide.bg-mayan-green { background-color: #ffffff !important; }
             .slide.bg-mayan-green .section-subtitle,
             .slide.bg-mayan-green .custom-list li,
-            .slide.bg-mayan-green .text-md, /* Asumiendo que .text-md es una clase que usas */
+            .slide.bg-mayan-green .text-md,
             .slide.bg-mayan-green p {
                 color: #000000 !important;
             }
@@ -315,11 +338,11 @@
                  color: #B8860B !important;
              }
 
-            h1.main-title { font-size: 18pt !important; margin-bottom: 0.4cm !important; } /* Ligeramente más pequeño */
+            h1.main-title { font-size: 18pt !important; margin-bottom: 0.4cm !important; }
             h2 { font-size: 15pt !important; border-bottom: 1px solid #555555 !important; margin-bottom: 0.6cm !important; padding-bottom: 0.15cm !important;}
             h3 { font-size: 12pt !important; color: #111111 !important; margin-bottom: 0.3cm !important; margin-top: 0.8cm !important;}
             p, li { font-size: 10pt !important; line-height: 1.45 !important; text-align: justify !important; }
-            .custom-list li::before { color: #222222 !important; } /* Íconos de lista más oscuros */
+            .custom-list li::before { color: #222222 !important; }
             .section-subtitle { font-size: 11pt !important; color: #222222 !important; margin-bottom: 0.7cm !important; font-style: italic; }
             .slide-content > p.text-lg, .slide-content > p.text-xl, .slide-content > p.text-2xl { font-size: 10pt !important; }
             .custom-list { max-width: 100% !important; }
@@ -352,12 +375,14 @@
                 <li><span class="font-bold">Multiplicador de Valor Exponencial:</span> El inicio del desarrollo de MayanCity (próximamente) catapultará su inversión.</li>
                 <li><span class="font-bold">Confianza y Prestigio Absolutos:</span> Trabajos iniciales por <span class="font-bold">Artigas Arquitectos</span>, visión de <span class="font-bold">Billy Springall</span>, y <span class="highlight-strong">100% SEGURIDAD LEGAL</span> (Títulos de Propiedad, Fideicomiso Bx+, PFG Abogados).</li>
             </ul>
+            <div class="mt-8 mb-2 print-center-button-container"> <a href="https://drive.google.com/file/d/1POCE_bHk_Yy3bsA1iW2kvfiYjyaaSY5O/view?usp=drive_link" target="_blank" class="btn-mayan">Proyecto Mayan City By Billy Springall</a>
+            </div>
         </div>
     </section>
 
     <section id="slide3" class="slide bg-gray-100">
         <div class="slide-content">
-            <img src="https://imagizer.imageshack.com/img924/4462/KExQ9o.png" alt="CHUUN: Corazón Estratégico de la Riviera Maya" class="slide-image">
+            <img src="https://imagizer.imageshack.com/img924/4462/KExQ9o.png" alt="CHUUN: Corazón Estratégico de la Riviera Maya" class="slide-image"> 
             <a href="https://www.google.com/maps/d/edit?mid=1kC2KTBTcqa7z1kSqEZgyV0fS49exodo&usp=drive_link" target="_blank" class="external-link">Ver en Google Maps</a>
             <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">Ubicación ESTELAR: Km 27 Ruta de los Cenotes</h2>
             <p class="section-subtitle text-xl">El Epicentro del Futuro Dorado y la Magia Ancestral de la Riviera Maya.</p>
@@ -477,8 +502,6 @@
                     </ul>
                 </div>
             </div>
-            <div class="mt-8 mb-6 print-center-button-container"> <a href="https://drive.google.com/file/d/1POCE_bHk_Yy3bsA1iW2kvfiYjyaaSY5O/view?usp=drive_link" target="_blank" class="btn-mayan">Proyecto Mayan City By Billy Springall</a>
-            </div>
             <p class="mt-10 text-xl font-semibold">Consulte hoy mismo por los detalles de escrituración y gastos de cierre <span class="underline">totalmente transparentes</span>. Nuestra asesoría personalizada está a su entera disposición.</p>
         </div>
     </section>
@@ -512,12 +535,8 @@
     </section>
 
     <script>
-        // Script simplificado. Ya no se gestiona la visibilidad de slides uno por uno.
-        // Todos los slides son visibles por defecto debido a los cambios en CSS.
+        // Script simplificado.
         document.addEventListener('DOMContentLoaded', () => {
-            // Podrías agregar aquí funcionalidades JS adicionales si fueran necesarias en el futuro
-            // para la vista de "página larga", pero por ahora, con los cambios de CSS,
-            // no se necesita JS para la visualización básica de los slides.
             console.log("Dossier Chuun cargado y listo.");
         });
     </script>
