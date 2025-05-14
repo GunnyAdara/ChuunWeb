@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHUUN: Origen de MayanCity - Dossier Exclusivo de Inversión Pionera con Certeza Jurídica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;900&display=swap" rel="stylesheet"> 
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; 
+            scroll-behavior: smooth;
+            line-height: 1.7; 
+        }
+        .slide {
+            min-height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 1.5rem; 
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, transform 0.5s ease-out; 
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        .slide.active {
+            opacity: 1;
+            position: relative; 
+        }
+        .slide-content {
+            max-width: 950px; 
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.03); 
+            padding: 2rem; 
+            border-radius: 1rem; 
+            position: relative; 
+        }
+        h1, h2, h3 {
+            font-family: 'Roboto Slab', serif; 
+            font-weight: 900; 
+        }
+        h1.main-title { 
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2); 
+            font-size: 2.75rem; 
+            line-height: 1.2; 
+        }
+        .bg-mayan-light { background-color: #F9F7F1; } 
+        .bg-mayan-green { background-color: #1A302A; } 
+        .text-mayan-gold { color: #D4AF37; } 
+        .text-mayan-dark-green { color: #152821; } 
+        .btn-mayan {
+            background-image: linear-gradient(to right, #D4AF37, #C99A2E); 
+            color: #1A302A; 
+            padding: 1rem 2.2rem; 
+            border-radius: 0.75rem; 
+            font-weight: 900; 
+            transition: all 0.3s ease;
+            text-transform: uppercase; 
+            letter-spacing: 0.08em; 
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); 
+        }
+        .btn-mayan:hover {
+            background-image: linear-gradient(to right, #C99A2E, #B08525);
+            transform: translateY(-3px) scale(1.05); 
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+        .nav-button {
+            position: fixed;
+            bottom: 1.5rem; 
+            padding: 0.7rem; 
+            background-color: rgba(212, 175, 55, 0.85); 
+            color: #1A302A; 
+            border-radius: 9999px; 
+            cursor: pointer;
+            z-index: 50;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .nav-button:hover {
+            background-color: #D4AF37; 
+            transform: scale(1.1);
+        }
+        .nav-prev { left: 1.5rem; }
+        .nav-next { right: 1.5rem; }
+        .img-placeholder { 
+            border: 4px solid #D4AF37; 
+            background-color: #F0EAD6; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #B08525; 
+            font-style: italic;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem; 
+            padding: 1.5rem;
+            margin-bottom: 2rem; 
+            border-radius: 0.75rem; 
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15); 
+        }
+        .slide-image { 
+            max-width: 100%; 
+            height: auto;   
+            max-height: 380px; 
+            object-fit: contain; 
+            margin: 0 auto 1rem auto; 
+            border-radius: 0.75rem; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .logo-slide-display { 
+            max-width: 520px; 
+            width: 100%; 
+            height: auto;
+            margin: 0 auto 1rem auto; 
+            border-radius: 0.5rem;
+            object-fit: contain; 
+        }
+         .logo-contact-display { 
+            max-width: 200px; 
+            height: auto;
+            margin: 0 auto; 
+        }
+        .external-link { 
+            display: inline-block;
+            margin-top: 0.5rem; 
+            margin-bottom: 1rem; 
+            padding: 0.75rem 1.5rem; 
+            background-color: #1A302A; 
+            color: #D4AF37; 
+            font-weight: bold;
+            border-radius: 0.5rem; 
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid #D4AF37; 
+        }
+        .external-link:hover {
+            background-color: #D4AF37;
+            color: #1A302A;
+            border-color: #1A302A;
+        }
+        
+        .highlight, .highlight-strong { 
+            color: #D4AF37;
+            font-weight: 700; 
+        }
+        .highlight-strong {
+            font-weight: 900; 
+            font-size: 1.1em; 
+        }
+        .section-subtitle { 
+            font-family: 'Inter', sans-serif;
+            font-size: 1.35rem; 
+            color: #e2e8f0; 
+            margin-bottom: 1.5rem; /* mb-6 */
+            font-weight: 400; 
+        }
+        .slide.bg-mayan-green .section-subtitle {
+             color: #d1d5db; /* gray-300 */
+        }
+        .slide:not(.bg-mayan-green) .section-subtitle {
+            color: #374151; /* gray-700 */
+        }
+
+        .custom-list {
+            list-style: none;
+            padding-left: 0;
+            text-align: left; 
+            max-width: 750px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .custom-list li {
+            position: relative;
+            padding-left: 2.5rem; 
+            margin-bottom: 1rem; /* mb-4 */
+            font-size: 1.1rem; 
+            line-height: 1.8; 
+        }
+        .custom-list li::before {
+            content: '📜'; 
+            position: absolute;
+            left: 0;
+            color: #D4AF37; 
+            font-size: 1.5rem; 
+            top: 0px; 
+        }
+        .general-benefit-list li::before {
+            content: '✨'; 
+        }
+        .vision-list li::before {
+            content: '💡'; 
+        }
+        .slide-number {
+            position: absolute;
+            bottom: 1rem; 
+            right: 1.5rem; 
+            font-size: 0.875rem; 
+            font-weight: bold;
+        }
+        .slide.bg-mayan-green .slide-number {
+            color: rgba(249, 247, 241, 0.7); 
+        }
+        .slide:not(.bg-mayan-green) .slide-number {
+            color: rgba(26, 48, 42, 0.7); 
+        }
+
+
+        .slide.bg-mayan-green .custom-list li { color: #f3f4f6; } 
+        .slide.bg-mayan-green .custom-list li::before { color: #FCD34D; } 
+
+
+        @media (max-width: 768px) {
+            .slide { padding: 2rem 1rem; }
+            .slide-content { padding: 1.5rem; }
+            h1.main-title { font-size: 2rem; line-height: 1.25; } 
+            h2 { font-size: 2rem; } 
+            .nav-button { padding: 0.6rem; bottom: 1rem;}
+            .nav-prev { left: 1rem; }
+            .nav-next { right: 1rem; }
+            .custom-list li { font-size: 1rem; padding-left: 2rem;}
+            .custom-list li::before { font-size: 1.3rem;}
+            .logo-slide-display { max-width: 90%; margin-bottom:1rem;} 
+            .logo-contact-display { max-width: 150px; }
+            .btn-mayan { padding: 0.9rem 1.5rem; font-size: 0.9rem;}
+            .slide-image { max-height: 300px; margin-bottom: 0.5rem;} 
+            .external-link { margin-top: 0.5rem; margin-bottom: 1rem; padding: 0.6rem 1.2rem; font-size: 0.9rem;}
+            .slide-number { bottom: 0.5rem; right: 0.75rem; font-size: 0.75rem;}
+        }
+         @media (min-width: 769px) and (max-width: 1024px) { /* Tablet */
+            h1.main-title { font-size: 2.75rem; line-height: 1.2;} 
+            .logo-slide-display { max-width: 450px; }
+        }
+        @media (min-width: 1025px) { /* Desktop */
+            h1.main-title { font-size: 3.25rem; line-height: 1.2;} 
+        }
+
+
+    </style>
+</head>
+<body class="bg-mayan-light text-mayan-dark-green">
+
+    <section id="slide1" class="slide active bg-mayan-green text-white">
+        <div class="slide-content">
+            <img src="https://imagizer.imageshack.com/v2/800x600q70/922/yBm0Bi.png" alt="Logotipo Oficial de CHUUN" class="logo-slide-display">
+            <h1 class="main-title font-black mb-3 text-mayan-gold">CHUUN: El Origen<br>SAGRADO de MayanCity</h1>
+            <p class="section-subtitle font-semibold text-xl md:text-2xl">Un Dossier de Inversión Fundacional con <span class="text-white underline decoration-mayan-gold decoration-2">Absoluta Certeza Jurídica y Potencial ILIMITADO</span></p>
+            <p class="mb-3 text-lg md:text-xl">Descubra <span class="font-bold text-mayan-gold text-2xl md:text-3xl">Chuun</span> (Origen en Maya): las <span class="highlight-strong">primeras y exclusivas 17.65 hectáreas</span>, seleccionadas del terreno original cuyos trabajos iniciales (deslinde y trazo) fueron supervisados por el prestigioso despacho <span class="font-bold">Artigas Arquitectos</span>. Chuun es el cimiento tangible de la <span class="font-bold">visionaria MayanCity</span>, conceptualizada por <span class="font-bold">Billy Springall</span>.</p>
+            <p class="mb-6 text-lg md:text-xl">Hoy, usted no solo invierte en tierra; <span class="highlight">asegura un legado</span> en el origen certificado y <span class="font-bold underline">legalmente INEXPUGNABLE</span> de una futura metrópolis.</p>
+            <p class="text-md italic opacity-80">12 de Mayo de 2025</p>
+            <div class="slide-number"></div> </div>
+    </section>
+
+    <section id="slide2" class="slide">
+        <div class="slide-content">
+            <img src="https://imagizer.imageshack.com/img924/5018/TWfTdu.png" alt="CHUUN: La Llave Maestra a MAYANCITY" class="slide-image">
+            <a href="https://youtu.be/Vsbfr5_3_Pk?si=5XCLL8WVVhVPhLUd" target="_blank" class="external-link">MayanCity Teaser</a>
+            <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">La Oportunidad de SU VIDA: Inversión Estratégica y BLINDADA en Chuun</h2>
+            <p class="section-subtitle text-mayan-dark-green text-xl">El Momento es <span class="font-bold">AHORA</span>. El Futuro es <span class="font-bold">MAYANCITY</span>. Su Legado Comienza con <span class="font-bold text-mayan-gold">CHUUN</span>.</p>
+            <p class="mb-4 text-lg">La visión es <span class="font-bold">MayanCity</span>: una comunidad revolucionaria, un ecosistema de prosperidad. La oportunidad <span class="highlight-strong">ÚNICA E IRREPETIBLE</span> es <span class="font-bold text-mayan-gold text-2xl">Chuun</span>: <span class="highlight">17.65 hectáreas selectas</span>, tomadas de la primera fase del proyecto original cuyos trabajos iniciales fueron supervisados por <span class="font-bold">Artigas Arquitectos</span> y con <span class="highlight">absoluta certeza jurídica</span>, ofrecidas a un precio de entrada para <span class="font-bold">auténticos pioneros</span> que buscan capitalizar el nacimiento de MayanCity, la obra maestra de Billy Springall.</p>
+            <p class="mb-6 text-lg"><span class="font-bold">Próximamente</span>, MayanCity desplegará su magnificencia, y el valor de estos terrenos fundacionales <span class="highlight">explotará exponencialmente</span>. Esta es su entrada privilegiada, con <span class="font-bold">títulos de propiedad individuales y un entramado legal a prueba de todo</span>.</p>
+            <ul class="custom-list general-benefit-list text-left mx-auto max-w-xl">
+                <li><span class="font-bold">Inversión Semilla de Alto Calibre:</span> Terrenos en Chuun a precios de <span class="highlight">$800 - $1,200 MXN/m²</span>. ¡Una ventana de oportunidad que se cerrará pronto!</li>
+                <li><span class="font-bold">Multiplicador de Valor Exponencial:</span> El inicio del desarrollo de MayanCity (próximamente) catapultará su inversión.</li>
+                <li><span class="font-bold">Confianza y Prestigio Absolutos:</span> Trabajos iniciales por <span class="font-bold">Artigas Arquitectos</span>, visión de <span class="font-bold">Billy Springall</span>, y <span class="highlight-strong">100% SEGURIDAD LEGAL</span> (Títulos de Propiedad, Fideicomiso Bx+, PFG Abogados).</li>
+            </ul>
+            <div class="slide-number"></div>
+        </div>
+    </section>
+
+    <section id="slide3" class="slide bg-gray-100">
+        <div class="slide-content">
+            <img src="https://imagizer.imageshack.com/img924/4462/KExQ9o.png" alt="CHUUN: Corazón Estratégico de la Riviera Maya" class="slide-image">
+            <a href="https://www.google.com/maps/d/edit?mid=1kC2KTBTcqa7z1kSqEZgyV0fS49exodo&usp=drive_link" target="_blank" class="external-link">Ver en Google Maps</a>
+            <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">Ubicación ESTELAR: Km 27 Ruta de los Cenotes</h2>
+            <p class="section-subtitle text-mayan-dark-green text-xl">El Epicentro del Futuro Dorado y la Magia Ancestral de la Riviera Maya.</p>
+            <p class="mb-4 text-lg"><span class="font-bold text-mayan-gold text-2xl">Chuun</span>, el génesis de MayanCity, se asienta en el <span class="font-bold">kilómetro 27 de la mítica Ruta de los Cenotes</span>. Una localización <span class="highlight">absolutamente privilegiada</span> por su belleza indómita, su energía ancestral y su <span class="highlight-strong">imparable valorización estratégica</span> y conectividad premium.</p>
+            <p class="mb-6 text-lg">A escasos minutos de los vibrantes Cancún y Puerto Morelos, con acceso directo al Aeropuerto Internacional y <span class="highlight">múltiples estaciones del Tren Maya a un suspiro</span>, su inversión no solo está en tierra firme, está en el <span class="highlight-strong">epicentro de la nueva era</span> de la Riviera Maya.</p>
+            <ul class="custom-list general-benefit-list text-left mx-auto max-w-xl">
+                <li>Zona de <span class="highlight-strong">explosiva plusvalía</span> y desarrollos eco-turísticos de élite mundial.</li>
+                <li>Conexión directa a infraestructura de primer orden y los destinos más codiciados del planeta.</li>
+                <li>Un entorno que <span class="highlight">garantiza un atractivo irresistible y una demanda creciente</span> para la futura MayanCity.</li>
+            </ul>
+            <div class="slide-number"></div>
+        </div>
+    </section>
+
+    <section id="slide4" class="slide">
+        <div class="slide-content">
+             <img src="https://imagizer.imageshack.com/img922/4066/giC1sn.png" alt="Avances de Obra en Sitio en Chuun: Avenidas Principales, Doble Acceso, Calles Secundarias." class="slide-image">
+             <a href="https://drive.google.com/file/d/1LL4V_yvspgCS_ysbtSQ9YP3KDYOSngTb/view?usp=sharing" target="_blank" class="external-link">Lotificacion Chuun</a>
+            <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">Chuun Hoy: La Base TANGIBLE de Su Inversión, con el Prestigio de Artigas</h2>
+            <p class="section-subtitle text-mayan-dark-green text-xl">Invierta sobre Realidades, no Promesas. Certeza y Calidad desde el Origen.</p>
+            <p class="mb-4 text-lg">Su inversión no es un salto al vacío. <span class="font-bold text-mayan-gold text-2xl">Chuun</span> le ofrece <span class="highlight">17.65 hectáreas selectas</span>, tomadas de la primera fase del proyecto original cuyos trabajos de campo (deslinde y trazo de vialidades) fueron supervisados por <span class="font-bold">Artigas Arquitectos</span>, un diferenciador <span class="font-bold">INVALUABLE</span>:</p>
+            <ul class="custom-list general-benefit-list text-left mx-auto max-w-xl mb-4">
+                <li><span class="font-bold">Deslinde total</span> de la superficie del proyecto original completado.</li>
+                <li><span class="font-bold">Trazo físico de vialidades internas ecológicas</span> (sascab compactado de alta calidad) en la primera fase del proyecto original, de la cual se seleccionan las <span class="highlight">17.65 hectáreas de Chuun</span>. Esto incluye <span class="highlight">avenidas principales, doble acceso y calles secundarias ya definidas en sitio</span>.</li>
+            </ul>
+            <p class="text-lg">Esto se traduce en un <span class="highlight-strong">activo tangible, preparado y con supervisión experta de élite</span>, una plataforma sólida que <span class="highlight">pulveriza riesgos</span> y está lista para ser el <span class="font-bold">génesis glorioso</span> de MayanCity. Usted adquiere tierra con <span class="font-bold">avances concretos y certificables a un precio de oportunidad irrepetible</span>.</p>
+            <div class="slide-number"></div>
+        </div>
+    </section>
+
+    <section id="slide5" class="slide bg-mayan-green text-white">
+        <div class="slide-content">
+            <img src="https://imagizer.imageshack.com/v2/800x600q70/922/gfC1Gd.png" alt="Chuun Inversión Blindada con Certeza Jurídica y respaldo PFG Abogados" class="slide-image">
+            <a href="https://www.pfgabogados.com/" target="_blank" class="external-link !bg-mayan-gold !text-mayan-green hover:!bg-yellow-300 hover:!text-mayan-green hover:!border-mayan-green">PFG Abogados</a>
+            <h2 class="text-4xl md:text-5xl font-black mt-4 mb-5 text-mayan-gold">Su Inversión BLINDADA: Certeza Jurídica ABSOLUTA en Chuun</h2>
+            <p class="section-subtitle text-2xl mb-6">Invierta con la <span class="text-white underline decoration-mayan-gold decoration-2">máxima tranquilidad y confianza</span>. Su patrimonio, nuestro compromiso.</p>
+            <p class="mb-5 text-xl md:text-2xl">La <span class="highlight-strong">roca sólida</span> de su inversión en <span class="font-bold text-mayan-gold text-3xl">Chuun</span> no solo reside en su <span class="font-bold">potencial de crecimiento estratosférico</span>, sino en su <span class="highlight-strong">IMPECABLE Y FORTIFICADA situación legal</span>:</p>
+            <ul class="custom-list text-left mx-auto max-w-2xl text-xl md:text-2xl">
+                <li><span class="font-bold">TÍTULOS DE PROPIEDAD INDIVIDUALES Y PLENOS:</span> ¡Adiós a las incertidumbres! Las tierras de Chuun cuentan con <span class="highlight-strong">TÍTULO DE PROPIEDAD PRIVADA</span>, no meras cesiones de derechos ejidales. ¡Es SUYO, sin peros!</li>
+                <li><span class="font-bold">FIDEICOMISO BANCARIO CON BX+ (VE POR MÁS):</span> Para su <span class="highlight">máxima seguridad, transparencia y protección patrimonial</span>, la tierra está administrada bajo un fideicomiso con el <span class="font-bold">reconocido y sólido banco Ve por Más (Bx+)</span>.</li>
+                <li><span class="font-bold">BLINDAJE LEGAL POR PFG ABOGADOS:</span> Todo el entramado legal es orquestado y salvaguardado por Pérez Ferrer González Abogados, un despacho de <span class="highlight">élite y prestigio nacional</span> que garantiza la <span class="highlight-strong">solvencia total y el 100% de seguridad jurídica</span>.</li>
+            </ul>
+            <p class="mt-8 text-xl md:text-2xl">En <span class="font-bold text-mayan-gold">Chuun</span>, su patrimonio no solo está protegido, está <span class="highlight">FORTALECIDO</span> por los más altos estándares legales y financieros de México.</p>
+            <div class="slide-number"></div>
+        </div>
+    </section>
+
+    <section id="slide6" class="slide bg-gray-100">
+        <div class="slide-content">
+             <img src="https://imagizer.imageshack.com/v2/800x600q70/924/QOlLi5.png" alt="Lote Chuun: Su Pasaporte al Legado MayanCity" class="slide-image">
+             <a href="https://youtu.be/gRX4M9ucY3s?si=o91_NG2iWbidXpph" target="_blank" class="external-link">Video Institucional MayanCity</a>
+            <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">Terrenos de Inversión en Chuun: Su Pasaporte al Legado (~600 m²)</h2>
+            <p class="section-subtitle text-mayan-dark-green text-xl">Adquiera un Activo con Potencial ILIMITADO y la Paz Mental de una Seguridad Jurídica TOTAL.</p>
+            <p class="mb-4 text-lg">Ofrecemos lotes de aproximadamente <span class="font-bold">600 m²</span> en <span class="font-bold text-mayan-gold text-2xl">Chuun</span>. Cada lote es una <span class="highlight-strong">participación directa, tangible y SEGURA</span> en el potencial ilimitado de MayanCity.</p>
+            <p class="mb-4 text-lg">A un precio de <span class="highlight">$990 MXN/m²</span> (ejemplo dentro del rango $800-$1200), un lote de 600 m² representa una inversión inicial de solo <span class="font-bold text-2xl text-mayan-gold">$594,000 MXN</span>.</p>
+            <p class="mb-6 text-lg">Una <span class="font-bold">inversión estratégica</span> comparada con el valor estratosférico que alcanzarán con el desarrollo de MayanCity. <span class="font-bold">Documentación impecable, títulos de propiedad individuales y fideicomiso bancario para su absoluta tranquilidad y confianza.</span></p>
+            <ul class="custom-list general-benefit-list text-left mx-auto max-w-xl">
+                <li>Lotes de ~600 m², dimensiones <span class="highlight">perfectas</span> para futuras residencias unifamiliares de lujo, santuarios personales integrados a la majestuosa selva de MayanCity.</li>
+                <li>Adquiera hoy a <span class="highlight-strong">precio de inversor PIONERO y VISIONARIO</span>, una ventaja exclusiva que se esfumará con el amanecer de MayanCity.</li>
+            </ul>
+            <div class="slide-number"></div>
+        </div>
+    </section>
+
+    <section id="slide7" class="slide">
+        <div class="slide-content">
+            <img src="https://imagizer.imageshack.com/img922/3894/K4wgce.png" alt="Visión Futura MayanCity por Billy Springall desde Chuun" class="slide-image">
+            <a href="https://youtu.be/FQMfOivrJno?si=sfDMrxZEWOneHNYv" target="_blank" class="external-link">MayanCity: Ciudad Futura</a>
+            <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-5 text-mayan-gold">La Visión MayanCity por Billy Springall: El Impulso Decisivo de Su Plusvalía</h2>
+            <p class="section-subtitle text-mayan-dark-green text-xl"><span class="font-bold text-mayan-gold text-2xl">Chuun</span> es su Acceso Exclusivo a una Metrópolis del Mañana, Diseñada para Trascender.</p>
+            <p class="mb-4 text-lg">Su inversión en <span class="font-bold text-mayan-gold text-2xl">Chuun</span> es el <span class="highlight-strong">pasaporte dorado</span> hacia <span class="font-bold">MayanCity</span>, una revolucionaria ciudad de <span class="highlight">más de 1,600 hectáreas</span>. Pre-conceptualizada por el <span class="font-bold">genio visionario, Arq. Billy Springall</span>, MayanCity está destinada a ser <span class="highlight-strong">ANTROPOGÉNICAMENTE POSITIVA</span>: un paradigma urbano que no solo conserva la selva, sino que la <span class="font-bold">REVITALIZA, REFUERZA y PROTEGE</span>, elevando activamente el ecosistema y la calidad de vida a niveles insospechados.</p>
+            <p class="mb-3 text-lg"><span class="font-bold">Próximamente</span>, MayanCity materializará una visión integral que fusiona principios ancestrales con innovación futurista:</p>
+            <ul class="custom-list vision-list text-left mx-auto max-w-3xl text-lg">
+                <li><span class="font-bold">Ciudad Humanista y Orgánica Viva:</span> Centrada en el bienestar humano, policéntrica ("ciudad de 15 minutos"), con "Cenotes Urbanos" como corazones vibrantes de actividad social y económica, rodeados por "Jungle Clusters" residenciales de <span class="highlight">ultra baja densidad</span> (solo 12% de ocupación) para una <span class="highlight-strong">inmersión total y respetuosa en la selva</span>.</li>
+                <li><span class="font-bold">Sostenibilidad Elevada a Arte:</span> Arquitectura bioclimática de vanguardia, generación propia de energía renovable, gestión circular ejemplar de agua y residuos, y el <span class="highlight">revolucionario concepto "Espejo Ecológico"</span> (por cada m² que usted adquiere, otro m² se destina a conservación perpetua).</li>
+                <li><span class="font-bold">Tecnología de Punta al Servicio de la Vida:</span> Inteligencia Artificial para una eficiencia sin precedentes, un Metaverso para experiencias comunitarias y comerciales inmersivas, Blockchain (Binkio) para una gobernanza transparente y una economía tokenizada, y un <span class="highlight">sistema de movilidad multimodal futurista</span> (Autotren, extensas ciclovías y senderos para vehículos eléctricos ligeros) que redefine la conexión minimizando el impacto.</li>
+                <li><span class="font-bold">Experiencias Inolvidables y Enriquecedoras:</span> La Fase 1 de MayanCity (155 ha) deslumbrará con un <span class="highlight">Cenote Urbano majestuoso</span> (laguna de 7ha, playas paradisíacas, zonas deportivas de élite), un <span class="font-bold">Wellness Centre & Hotel de calibre mundial</span>, y una profunda reverencia e integración de la rica herencia cultural maya.</li>
+            </ul>
+            <p class="mt-5 text-lg">Con la <span class="font-bold">genialidad conceptual de Springall</span>, la <span class="font-bold">solidez estructural de los trabajos iniciales de Artigas Arquitectos</span> en el proyecto original (del cual Chuun es la joya fundacional), y el <span class="font-bold">impulso de socios tecnológicos líderes</span> (Eco World Building, Solben, Binkio), esta es la <span class="highlight-strong">magnitud colosal del proyecto</span> que <span class="highlight">catapultará el valor de su inversión pionera en Chuun</span> a la estratósfera financiera.</p>
+            <div class="slide-number"></div>
+        </div>
+    </section>
+
+    <section id="slide8" class="slide bg-gray-100">
+        <div class="slide-content">
+            <img src="https://placehold.co/600x350/f3f4f6/C99A2E?text=PLUSVALÍA+ESTRATOSFÉRICA:+Su+Inversión+en+Chuun+Asciende" alt="Proyección Plusvalía Chuun" class="slide-image">
+            <h2 class="text-4xl md:text-5xl font-bold mb-5 text-mayan-gold">Proyección de Plusvalía Chuun: Cifras de una Oportunidad HISTÓRICA</h2>
+            <p class="section-subtitle text-mayan-dark-green text-xl">Su Inversión Inteligente y Segura, Destinada a una Valorización Legendaria con MayanCity.</p>
+            <p class="mb-4 text-lg">Esta es la <span class="font-bold">joya de la corona</span> de su decisión. Adquiriendo en <span class="font-bold text-mayan-gold text-2xl">Chuun</span> a precios de $800-$1200 MXN/m²:</p>
+            <ul class="text-left list-none space-y-3 text-lg mb-4 mx-auto max-w-xl bg-white p-6 rounded-lg shadow-xl">
+                <li><span class="font-bold">Inversión Base en Chuun (600m² a $990/m²):</span> <span class="text-mayan-dark-green font-semibold text-xl">$594,000 MXN</span>.</li>
+                <li><span class="font-bold">Año 1 (Despegue Inicial y Posicionamiento Estratégico):</span> Crecimiento estimado <span class="text-green-600 font-bold text-xl">30-40%</span>. Valor lote: <span class="text-mayan-dark-green font-semibold text-xl">~$772,200 - $831,600 MXN</span>.</li>
+                <li><span class="font-bold text-2xl text-green-700">Próximamente (Explosión de Valor con el Arranque de MayanCity):</span> Valor lote proyectado: <span class="font-black text-3xl text-mayan-gold">$1,544,400 - $2,079,000 MXN <span class="text-xl text-green-700">(¡y esto es solo el comienzo del ascenso conforme MayanCity se materialice!)</span></span>.</li>
+                <li><span class="font-bold text-3xl text-mayan-gold mt-3 block">Potencial de Retorno de Inversión (ROI) COLOSAL: <span class="font-black">¡160% - 250% (y mucho más)!</span></span></li>
+            </ul>
+            <p class="text-lg mb-4">Esta es una oportunidad <span class="highlight-strong">ÚNICA EN SU GENERACIÓN</span> para una <span class="highlight">capitalización acelerada y masiva</span>, impulsada por un desarrollo de <span class="font-bold">trascendencia mundial</span>, conceptualizado por las mentes más brillantes.</p>
+            <p class="text-sm italic">*Estas proyecciones son estimaciones conservadoras basadas en análisis de mercado y supuestos actuales del proyecto MayanCity y no garantizan resultados futuros. El potencial real podría superar estas cifras. Consulte el dossier completo para detalles.</p>
+            <div class="slide-number"></div>
+        </div>
+    </section>
+
+    <section id="slide9" class="slide">
+        <div class="slide-content">
+            <img src="https://placehold.co/500x250/F8F6F0/1A302A?text=Adquisición+VIP+para+Pioneros+de+Chuun" alt="Plan de Adquisición Chuun" class="slide-image">
+            <h2 class="text-4xl md:text-5xl font-bold mb-5 text-mayan-gold">Plan de Adquisición VIP y Transparente (Mayo 2025)</h2>
+            <p class="section-subtitle text-mayan-dark-green text-xl">Su Acceso Exclusivo y Simplificado como Inversor Fundador en <span class="font-bold text-mayan-gold">Chuun</span>.</p>
+            <p class="mb-6 text-lg">Diseñado para una <span class="highlight-strong">decisión ágil, inteligente y 100% segura</span>, con documentación impecable y procesos cristalinos:</p>
+            <div class="md:flex md:space-x-8 space-y-8 md:space-y-0 text-left max-w-4xl mx-auto">
+                <div class="flex-1 p-8 bg-gray-50 rounded-2xl shadow-xl border-t-8 border-mayan-gold hover:shadow-2xl transition-shadow duration-300">
+                    <h3 class="font-bold text-3xl mb-4 text-mayan-dark-green">1. Pago de Contado ÉLITE:</h3>
+                    <p class="text-xl"><span class="font-bold">Descuento PREFERENCIAL Inmediato:</span> <span class="text-green-600 font-black text-2xl">10%</span>.</p>
+                    <p class="text-xl">(Precio ejemplo $891 MXN/m²).</p>
+                    <p class="text-xl"><span class="font-bold">Lote 600m²: <span class="text-mayan-gold font-black text-2xl">$534,600 MXN.</span></span> ¡Su inversión, maximizada desde el inicio!</p>
+                </div>
+                <div class="flex-1 p-8 bg-gray-50 rounded-2xl shadow-xl border-t-8 border-mayan-gold hover:shadow-2xl transition-shadow duration-300">
+                    <h3 class="font-bold text-3xl mb-4 text-mayan-dark-green">2. Financiamiento Directo PIONERO:</h3>
+                    <p class="text-xl"><span class="font-bold">Enganche Mínimo Accesible:</span> 30% (Ej: $178,200 MXN para lote de $594,000).</p>
+                    <p class="font-bold text-xl mt-2">Saldo a liquidar cómodamente:</p>
+                    <ul class="list-disc list-inside ml-5 text-xl mt-2">
+                        <li>Hasta 12 Meses <span class="font-black text-green-600 text-2xl">¡SIN INTERESES!</span></li>
+                        <li>13 a 24 Meses: Tasa Anual Fija <span class="font-bold">ULTRA-PREFERENCIAL</span> del 10%.</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="mt-10 text-xl font-semibold">Consulte hoy mismo por los detalles de escrituración y gastos de cierre <span class="underline">totalmente transparentes</span>. Nuestra asesoría personalizada está a su entera disposición.</p>
+            <div class="slide-number"></div>
+        </div>
+    </section>
+
+    <section id="slide10" class="slide bg-mayan-green text-white">
+        <div class="slide-content">
+            <img src="https://placehold.co/500x300/1A302A/F8F6F0?text=¡ES+SU+MOMENTO+HISTÓRICO!+Su+Legado+en+Chuun+Comienza+YA" alt="Llamada a la Acción Chuun" class="slide-image">
+            <h2 class="text-4xl md:text-5xl font-black mb-4 text-mayan-gold">¡Es SU Momento HISTÓRICO! Asegure Su Legado en Chuun AHORA</h2>
+            <p class="section-subtitle text-2xl mb-5">Venta Exclusiva para Pioneros = Disponibilidad <span class="text-white underline decoration-mayan-gold decoration-2">EXTREMADAMENTE LIMITADA</span></p>
+            <p class="mb-6 text-xl">Los terrenos en <span class="font-bold text-mayan-gold text-2xl">Chuun</span>, a estos <span class="highlight-strong">precios fundacionales irrepetibles</span>, son una gema escasa y se asignarán con celeridad a través de la red exclusiva de <span class="font-bold">[Nombre de Comercializadora Amiga]</span>.</p>
+            <ol class="text-left list-none space-y-5 text-xl mb-10 mx-auto max-w-xl">
+                <li class="flex items-start"><span class="text-mayan-gold font-black text-3xl mr-4">1.</span> <span class="font-bold">CONTACTE DE INMEDIATO:</span> Dialogue con su asesor personal en <span class="font-bold">[Nombre de Comercializadora Amiga]</span>. No deje pasar un segundo más.</li>
+                <li class="flex items-start"><span class="text-mayan-gold font-black text-3xl mr-4">2.</span> <span class="font-bold">SELECCIONE SU(S) LOTE(S) FUNDACIONAL(ES) EN CHUUN:</span> La disponibilidad es dinámica y se reduce a cada instante. ¡Elija su pieza del paraíso!</li>
+                <li class="flex items-start"><span class="text-mayan-gold font-black text-3xl mr-4">3.</span> <span class="font-bold">RESERVE Y FORMALICE SU INVERSIÓN TRASCENDENTAL:</span> Con un proceso ágil, cristalino y con la <span class="highlight-strong">armadura legal y financiera</span> que le hemos detallado.</li>
+            </ol>
+            <p class="text-2xl font-bold mb-5">No espere a contemplar la magnificencia de MayanCity desde afuera, anhelando haber sido parte de su <span class="font-bold text-mayan-gold text-3xl">origen sagrado, Chuun</span>.</p>
+            <p class="text-2xl font-bold mb-10">Sea protagonista de esta nueva era. <span class="highlight-strong">Benefíciese como solo los verdaderos pioneros y visionarios lo hacen</span>.</p>
+            <a href="#slide11" class="btn-mayan text-2xl">¡Quiero Mi Lugar en Chuun! Solicitar Dossier YA</a>
+            <p class="mt-8 text-md italic opacity-80">*Lotes disponibles: [Consultar con Asesor de Ventas de [Nombre de Comercializadora Amiga] para disponibilidad en tiempo real. ¡Actúe rápido!]*</p>
+            <div class="slide-number"></div>
+        </div>
+    </section>
+
+    <section id="slide11" class="slide">
+        <div class="slide-content">
+            <div class="md:flex items-center justify-center space-y-6 md:space-y-0 md:space-x-8 mb-10">
+                 <img src="https://imagizer.imageshack.com/img924/482/WqppCj.png" alt="Logotipo Oficial de CHUUN" class="logo-contact-display">
+                 <img src="https://placehold.co/220x120/F8F6F0/1A302A?text=Logo+MayanCity+(Visionario)" alt="Logo MayanCity" class="h-20 md:h-24 mx-auto md:mx-0 img-placeholder">
+                <img src="https://placehold.co/220x120/F8F6F0/C99A2E?text=Logo+[Comercializadora+Premium]" alt="Logo Comercializadora Amiga" class="h-20 md:h-24 mx-auto md:mx-0 img-placeholder">
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 text-mayan-gold">Atención Exclusiva y Personalizada para Inversores en Chuun</h2>
+            <p class="mb-8 text-xl">Para acceder al <span class="font-bold">dossier de inversión completo y confidencial</span> de <span class="font-bold text-mayan-gold text-2xl">Chuun</span> (incluyendo todos los detalles legales y financieros), conocer la disponibilidad en tiempo real y asegurar su participación privilegiada en el origen de MayanCity, contacte <span class="font-bold">AHORA MISMO</span> a nuestros socios estratégicos de comercialización:</p>
+            <div class="p-10 bg-gray-100 rounded-2xl shadow-2xl inline-block border-t-8 border-mayan-gold">
+                <p class="text-3xl md:text-4xl font-bold text-mayan-dark-green mb-4">[Nombre de Comercializadora Amiga]</p>
+                <p class="text-2xl"><span class="font-bold">Asesor Exclusivo y Confidencial:</span> [Nombre del Contacto en la Comercializadora]</p>
+                <p class="text-2xl"><span class="font-bold">Email Directo:</span> <a href="mailto:[Email de la Comercializadora]" class="text-mayan-gold hover:underline">[Email de la Comercializadora]</a></p>
+                <p class="text-2xl"><span class="font-bold">Línea Privada (Tel/WhatsApp):</span> <a href="tel:[Teléfono de la Comercializadora]" class="text-mayan-gold hover:underline">[Teléfono de la Comercializadora]</a></p>
+            </div>
+            <p class="mt-12 text-lg italic text-gray-700">*Presentado por El Consorcio de Expertos de Élite para MayanCity. Toda la información y proyecciones están sujetas a cambios y deben ser verificadas. Este material no constituye una oferta formal de venta hasta la presentación de la documentación legal correspondiente. La oportunidad en Chuun es para un número limitado de inversores pioneros.*</p>
+            <div class="slide-number"></div>
+        </div>
+    </section>
+
+    <button id="prevSlide" class="nav-button nav-prev" title="Anterior">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+    </button>
+    <button id="nextSlide" class="nav-button nav-next" title="Siguiente">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+    </button>
+
+    <script>
+        // Script para la navegación de slides
+        const slides = document.querySelectorAll('.slide');
+        const slideNumbers = document.querySelectorAll('.slide-number'); 
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        function updateSlideNumbers() {
+            slideNumbers.forEach((sn, index) => {
+                sn.textContent = `${index + 1} / ${totalSlides}`;
+            });
+        }
+        
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i !== index) {
+                    slide.style.display = 'none'; 
+                } else {
+                    slide.style.display = 'flex'; 
+                }
+            });
+            slides[index].classList.add('active');
+            updateSlideNumbers(); 
+        }
+
+        updateSlideNumbers();
+        showSlide(currentSlide); 
+
+        document.getElementById('nextSlide').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        });
+
+        document.getElementById('prevSlide').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') {
+                document.getElementById('nextSlide').click();
+            } else if (event.key === 'ArrowLeft') {
+                document.getElementById('prevSlide').click();
+            }
+        });
+
+        const contactButton = document.querySelector('a[href="#slide11"]'); 
+        if(contactButton) {
+            contactButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                let targetSlideId = this.getAttribute('href').substring(1); 
+                let targetSlideIndex = -1;
+                slides.forEach((slide, index) => {
+                    if(slide.id === targetSlideId) {
+                        targetSlideIndex = index;
+                    }
+                });
+
+                if (targetSlideIndex !== -1) {
+                    currentSlide = targetSlideIndex;
+                    showSlide(currentSlide);
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
